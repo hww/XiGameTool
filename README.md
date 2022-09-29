@@ -12,17 +12,15 @@ Simple Unity editor extension for managing visibility of layers and categories o
 
 ## Introduction
 
-The scene editor in Unity 3D has enough features to work with small scenes. But when I need to edit scenes with lots of play zones, I sometimes miss the control system for selective categories or layers.  This very simple plugin lets you add two additional panels to the level editor. The tool controls the visibility and color any debug rendering information: gizmos, lines, colliders etc. 
+The scene editor in Unity 3D has enough features to work with small scenes. But when I need to edit scenes with lots of play zones, I sometimes miss the control system for selective categories, layers or sets. This very simple plugin lets you add three additional panels to the level editor. The tool controls the visibility and color for any debug information rendering such as _gizmos_, _splines_, _colliders_ etc.  The layers managing tool has simple for layer locking
 
-- **Visibility and color management of Unity layers** _used for managing the primitives related on Unity Layers_.
-- **Manage the visibility of object categories** _used for managing data by categories: cameras, spawners, splines, etc_.
-- **Manage the visibility of object set** _used formanaging the objects sets: grass, scrpable, target pointes, etc_.
+- **Visibility and color management of Unity layers** _For managing the primitives related on Unity Layers_.
+- **Manage the visibility of object categories** _For managing scene data by gtoups (_camera_, _gameplay_, _battle_ etc) and by categories (_spawner_, _traversal_, _splines_ etc)_.
+- **Manage the visibility of object set** _For managing the objects sets such as _scrpable, _target pointes_, etc_.
 
-In addition to management, the panels display object statistics and control simple but clear management of layer locking. 
+It is easy to modify tool to have your custom lists of _levels_, _categories_, _sets_.
 
-Similarly, you can add a visibility control panel for game zones or Unity tags. 
-
-As a result of the results of the use of this extension has shown high efficiency on large commercial projects.
+In addition to management, the panels display the object's statistics. As a result of the results of the use of this extension has shown high efficiency on large commercial projects.
 
 ## Install
 
@@ -38,6 +36,7 @@ You can also install via git url by adding this entry in your manifest.json
 ```
 ## TODO
 
+- [x] Basic functionality
 - [ ] Customizable and safe the objects tagging
 - [ ] The performance optimization
 - [ ] Update documentation
@@ -69,7 +68,7 @@ public class ArtPrimitive : MonoBehaviour
 
 ## Unity Layers Visibility and Color
 
-The pannel alow makes visible or invisible layers, also it can make layer protected or not. Additionaly it allow to change layer's color. And finaly it displays metrics per layer.
+The pannel alow makes visible or invisible the Unity layers, also it can set a layer protected or not. Additionaly it allow to change layer's color. And finaly it displays metrics per layer.
 
 ![Layers Window](/Documentation/layers_window_colors.png)
 
