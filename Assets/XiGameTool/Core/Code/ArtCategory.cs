@@ -17,6 +17,7 @@ namespace XiGameTool.Core
         public readonly bool IsOptional;
 
         private readonly string _visiblePreferenceName;
+        private bool _isVisible;
 
         /// <summary>
         ///     Construct new category
@@ -33,8 +34,6 @@ namespace XiGameTool.Core
             _visiblePreferenceName = $"CategoriesWindowVisible{artGroupName}{categoryName}";
             _isVisible = GetVisibleInternal(true);
         }
-        
-        private bool _isVisible;
 
         /// <summary>
         ///     Is this category visible? Will set to true or false the categories belong
@@ -64,6 +63,5 @@ namespace XiGameTool.Core
             EditorPrefs.SetBool(_visiblePreferenceName, value);
 #endif
         }
-
     }
 }

@@ -13,6 +13,4 @@ namespace XiGameTool.Core
         GamePlay,
         Particles
     }
-
-
 }
