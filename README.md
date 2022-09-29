@@ -6,6 +6,8 @@
 [![](https://img.shields.io/github/license/hww/XiGameTool.svg)](https://github.com/hww/XiGameTool/blob/master/LICENSE)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
+![Title Image](Documentation/title_image.png)
+
 Simple Unity editor extension for managing visibility of layers and categories of objects, created by [hww](https://github.com/hww)
 
 ## Introduction
