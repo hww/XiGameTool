@@ -37,7 +37,7 @@ namespace XiGameTool.Core
         private bool _isVisible;
 
         /// <summary>
-        ///     Is this category visible
+        ///     Is this category visible? Will set to true or false the categories belong
         /// </summary>
         public bool IsVisible
         {
