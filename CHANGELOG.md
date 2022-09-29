@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/hww/XiGameTool/compare/v1.0.0...v1.1.0) (2022-09-29)
+
+
+### Features
+
+* **code:** Fix building ([b3e2737](https://github.com/hww/XiGameTool/commit/b3e27374c802eaa4b0e449dbbd3b5178a21fa97b))
+
 # 1.0.0 (2022-09-29)
 
 
