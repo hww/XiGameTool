@@ -56,7 +56,7 @@ public class ArtPrimitive : MonoBehaviour
     }
 }
 ``` 
-
+ 
 ![Art Primitive Component](/Documentation/art-primitive.png)
 
 ## Edit Layers Visibility
