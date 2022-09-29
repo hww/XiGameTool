@@ -75,6 +75,5 @@ namespace XiGameTool.Core
                     Categories[i].IsVisible = value;
             }
         }
-
     }
 }

@@ -92,7 +92,6 @@ namespace XiGameTool.Core
         }
 
         private Color _color;
-
         
         /// <summary>
         ///     Get color of this layer

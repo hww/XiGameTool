@@ -20,7 +20,6 @@ namespace XiGameTool.Core
                 Layers[(int) layer] = new ArtLayer((int) layer, ((GameLayer) layer).ToString(), Color.white);
         }
 
-
         /// <summary>
         ///     Get art layer by tag
         /// </summary>
@@ -45,14 +44,17 @@ namespace XiGameTool.Core
         {
             return Layers[gameLayer].Color;
         }
+
         public static Color GetLineColor(GameLayer gameLayer)
         {
             return Layers[(int)gameLayer].Color;
         }
+
         public static void SetLineColor(int gameLayer, Color color)
         {
             Layers[gameLayer].Color = color;
         }
+
         public static void SetLineColor(GameLayer gameLayer, Color color)
         {
             Layers[(int)gameLayer].Color = color;
