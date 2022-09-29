@@ -59,17 +59,17 @@ public class ArtPrimitive : MonoBehaviour
  
 ![Art Primitive Component](/Documentation/art-primitive.png)
 
-## Edit Layers Visibility
+## Edit Layers Visibility and Color
 
 The pannel alow makes visible or invisible layers, also it can make layer protected or not. Additionaly it allow to change layer's color. And finaly it displays metrics per layer.
 
 ![Layers Window](/Documentation/layers_window_colors.png)
 
-## Edit Categories Visibility
+## Edit Sets Visibility and Color
 
-The pannel alow makes visible or invisible category (or group of categories). Additionaly it displays metrics per category.
+The pannel alow makes visible or invisible the objet set. Additionaly it displays metrics per category.
 
-![Categories Window](/Documentation/categories_window.png)
+![Categories Window](/Documentation/object_sets.png)
 
 ## Change Layer Names
 
@@ -122,8 +122,6 @@ private void OnDrawGizmos()
 ```
 
 The line and fill colors will be used from category or from layers panel, depends on checkbox "User Layer Colors"
-
-![Layers Window](/Documentation/layers_window_colors.png)
 
 ## Access to layer settings
 
