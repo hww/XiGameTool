@@ -1,0 +1,17 @@
+{
+    "name": "XiGameTool",
+    "rootNamespace": "XiGameTool",
+    "references": [
+        "NaughtyAttributes.Core",
+        "XiCore"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
