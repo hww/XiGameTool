@@ -36,6 +36,12 @@ You can also install via git url by adding this entry in your manifest.json
 ```bash
 "com.hww.xigametool": "https://github.com/hww/XiGameTool.git#upm"
 ```
+## TODO
+
+- [ ] Customizable and safe the objects tagging
+- [ ] The performance optimization
+- [ ] Update documentation
+- [ ] Better redraw screen for Unity
 
 ## ArtPrimitive Class
 
