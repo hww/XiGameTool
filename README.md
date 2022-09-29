@@ -10,11 +10,11 @@ Simple Unity editor extension for managing visibility of layers and categories o
 
 ## Introduction
 
-The scene editor in Unity 3D has enough features to work with small scenes. But when I need to edit scenes with lots of play zones, I sometimes miss the control system for selective categories or layers.  This very simple plugin lets you add two additional panels to the level editor: 
+The scene editor in Unity 3D has enough features to work with small scenes. But when I need to edit scenes with lots of play zones, I sometimes miss the control system for selective categories or layers.  This very simple plugin lets you add two additional panels to the level editor. The tool controls the visibility and color any debug rendering information: gizmos, lines, colliders etc. 
 
-- **Visibility and color management of Unity layers** _used for rendering the colliders and other DebugDraw information related on Unity Layers_.
-- **Manage the visibility of object categories** _used for visibility of various data categories: cameras, spawners, splines, etc_.
-- **Manage the visibility of object set** _used for visibility of various data categories: cameras, spawners, splines, etc_.
+- **Visibility and color management of Unity layers** _used for managing the primitives related on Unity Layers_.
+- **Manage the visibility of object categories** _used for managing data by categories: cameras, spawners, splines, etc_.
+- **Manage the visibility of object set** _used formanaging the objects sets: grass, scrpable, target pointes, etc_.
 
 In addition to management, the panels display object statistics and control simple but clear management of layer locking. 
 
