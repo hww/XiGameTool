@@ -1,3 +1,10 @@
+# 1.0.0 (2022-09-29)
+
+
+### Features
+
+* **initial:** Initial release ([9f4b1a9](https://github.com/hww/XiGameTool/commit/9f4b1a9186fd3f6509b0a4c6cc63965d055f69c6))
+
 # 1.0.0 (2022-09-19)
 
 
