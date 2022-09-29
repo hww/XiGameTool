@@ -63,7 +63,7 @@ public class ArtPrimitive : MonoBehaviour
 
 The pannel alow makes visible or invisible layers, also it can make layer protected or not. Additionaly it allow to change layer's color. And finaly it displays metrics per layer.
 
-![Layers Window](/Documentation/layers_window.png)
+![Layers Window](/Documentation/layers_window_colors.png)
 
 ## Edit Categories Visibility
 
