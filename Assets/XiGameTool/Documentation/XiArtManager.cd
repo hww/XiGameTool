@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XiGameTool.Core.ArtPrimitive">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAoAAAAQAAAAAAAAAAAAAgAAAAAAAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\ArtPrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
