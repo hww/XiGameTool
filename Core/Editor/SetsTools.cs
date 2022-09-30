@@ -36,7 +36,7 @@ namespace XiGameTool.Core.Editor
             var count = 0;
             foreach (var t in root)
                 if (t.hideFlags == HideFlags.None)
-                    counts[(int)t.ArtSetTag]++;
+                    counts[(int)t.ArtSet]++;
             return count;
         }
 
@@ -44,22 +44,22 @@ namespace XiGameTool.Core.Editor
         // Selecting
         // ====================================================================
 
-        private static void SelectObjectsInSet(ArtSetTag artSet)
+        private static void SelectObjectsInSet(EArtSet artSet)
         {
             var root = Resources.FindObjectsOfTypeAll<ArtPrimitive>();
             SelectObjectsInSet(root, artSet);
         }
 
-        private static void SelectObjectsInSet(ArtPrimitive[] root, ArtSetTag artSet)
+        private static void SelectObjectsInSet(ArtPrimitive[] root, EArtSet artSet)
         {
             var selected = new List<GameObject>();
             foreach (var t in root)
-                if (t.ArtSetTag == artSet && t.hideFlags == HideFlags.None)
+                if (t.ArtSet == artSet && t.hideFlags == HideFlags.None)
                     selected.Add(t.gameObject);
             Selection.objects = selected.ToArray();
         }
 
-        public static void AssignArtSet(ArtSetTag artSet)
+        public static void AssignArtSet(EArtSet artSet)
         {
             foreach (var o in Selection.objects)
             {
@@ -67,7 +67,7 @@ namespace XiGameTool.Core.Editor
                 {
                     var oo = (o as GameObject).GetComponents<ArtPrimitive>();
                     foreach (var ooo in oo)
-                        ooo.ArtSetTag = artSet;
+                        ooo.ArtSet = artSet;
                 }
             }
         }

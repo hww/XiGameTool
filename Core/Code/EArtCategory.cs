@@ -2,7 +2,7 @@
 
 namespace XiGameTool.Core
 {
-    public enum ArtCategoryTag
+    public enum EArtCategory
     {
         ActorsSpawners,
         NavShapes,

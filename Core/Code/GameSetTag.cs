@@ -8,7 +8,7 @@ namespace XiGameTool.Core
     /// <summary>
     /// Edit this enum for your own project
     /// </summary>
-    public enum ArtSetTag
+    public enum EArtSet
     {
         // -- BUILTIN LAYERS --
         Default,

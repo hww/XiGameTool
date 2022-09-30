@@ -9,9 +9,9 @@ namespace XiArtManager.Examples
 
         void OnDrawGizmos()
         {
-            if (ArtSets.GetVisible(ArtSetTag) && ArtGroups.GetVisible(ArtGroupTag, ArtCategoryTag))
+            if (ArtSets.GetVisible(ArtSet) && ArtGroups.GetVisible(ArtGroup, ArtCategory))
             {
-                Gizmos.color = ArtSets.GetLineColor(ArtSetTag);
+                Gizmos.color = ArtSets.GetLineColor(ArtSet);
                 Gizmos.DrawWireSphere(transform.position, 1f);
                 UnityEditor.Handles.Label(transform.position, gameObject.name);
             }        

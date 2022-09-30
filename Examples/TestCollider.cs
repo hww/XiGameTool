@@ -13,7 +13,7 @@ namespace XiArtManager.Examples
         // Update is called once per frame
         void OnDrawGizmos()
         {
-            if (ArtSets.GetVisible(ArtSetTag) && ArtGroups.GetVisible(ArtGroupTag, ArtCategoryTag))
+            if (ArtSets.GetVisible(ArtSet) && ArtGroups.GetVisible(ArtGroup, ArtCategory))
             {
                 Gizmos.color = ArtLayers.GetLineColor(gameObject.layer);
                 boxCollider = (boxCollider == null) ? GetComponent<BoxCollider>() : boxCollider;

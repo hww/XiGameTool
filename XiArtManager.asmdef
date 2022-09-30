@@ -2,8 +2,9 @@
     "name": "XiGameTool",
     "rootNamespace": "XiGameTool",
     "references": [
+        "XiCore",
         "NaughtyAttributes.Core",
-        "XiCore"
+        "NaughtyAttributes.Editor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

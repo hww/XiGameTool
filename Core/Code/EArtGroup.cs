@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace XiGameTool.Core
 {
-    public enum ArtGroupTag
+    public enum EArtGroup
     {
         Globals,
         Camera,

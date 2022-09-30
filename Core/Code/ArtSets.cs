@@ -15,9 +15,9 @@ namespace XiGameTool.Core
         static ArtSets()
         {
             // -- initialize all layers --
-            var setsValues = Enum.GetValues(typeof(ArtSetTag));
+            var setsValues = Enum.GetValues(typeof(EArtSet));
             foreach (var setTag in setsValues)
-                Sets[(int) setTag] = new ArtSet((ArtSetTag)setTag, ((ArtSetTag) setTag).ToString(), Color.white);
+                Sets[(int) setTag] = new ArtSet((EArtSet)setTag, ((EArtSet) setTag).ToString(), Color.white);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="artSet"></param>
         /// <returns></returns>
-        public static ArtSet GetArtSet(ArtSetTag artSet)
+        public static ArtSet GetArtSet(EArtSet artSet)
         {
             return Sets[(int) artSet];
         }
@@ -46,7 +46,7 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="gameObjectLayer"></param>
         /// <returns></returns>
-        public static Color GetLineColor(ArtSetTag artSet)
+        public static Color GetLineColor(EArtSet artSet)
         {
             return Sets[(int)artSet].Color;
         }
@@ -57,7 +57,7 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="gameObjectLayer"></param>
         /// <returns></returns>
-        public static Color GetFillColor(ArtSetTag artSet)
+        public static Color GetFillColor(EArtSet artSet)
         {
             return Sets[(int)artSet].FillColor;
         }
@@ -66,13 +66,13 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="artSet"></param>
         /// <returns></returns>
-        public static bool GetVisible(ArtSetTag artSet)
+        public static bool GetVisible(EArtSet artSet)
         {
             return Sets[(int)artSet].IsVisible;
         }
 
 
-        public static void SetLineColor(ArtSetTag artSet, Color color)
+        public static void SetLineColor(EArtSet artSet, Color color)
         {
             Sets[(int)artSet].Color = color;
         }

@@ -38,7 +38,7 @@ namespace XiGameTool.Core
         /// </summary>
         public static ArtGroup Gameplay;
 
-        private static readonly ArtGroup[] Groups = new ArtGroup[System.Enum.GetValues(typeof(ArtGroupTag)).Length];
+        private static readonly ArtGroup[] Groups = new ArtGroup[System.Enum.GetValues(typeof(EArtGroup)).Length];
         private static bool _isInitialized;
         private static bool _showOptional;
 
@@ -58,15 +58,15 @@ namespace XiGameTool.Core
             if (_isInitialized) return;
             _isInitialized = true;
 
-            Globals = CreateGroup(ArtGroupTag.Globals);
-            Gameplay = CreateGroup(ArtGroupTag.GamePlay);
-            Camera = CreateGroup(ArtGroupTag.Camera);
-            Sounds = CreateGroup(ArtGroupTag.Sounds);
-            Rendering = CreateGroup(ArtGroupTag.Rendering);
-            Particles = CreateGroup(ArtGroupTag.Particles);
+            Globals = CreateGroup(EArtGroup.Globals);
+            Gameplay = CreateGroup(EArtGroup.GamePlay);
+            Camera = CreateGroup(EArtGroup.Camera);
+            Sounds = CreateGroup(EArtGroup.Sounds);
+            Rendering = CreateGroup(EArtGroup.Rendering);
+            Particles = CreateGroup(EArtGroup.Particles);
         }
 
-        private static ArtGroup CreateGroup(ArtGroupTag groupTag)
+        private static ArtGroup CreateGroup(EArtGroup groupTag)
         {
             var group = new ArtGroup(groupTag);
             Groups[(int) group.ArtGroupTag] = group;
@@ -79,15 +79,15 @@ namespace XiGameTool.Core
         /// <param name="artGroupTag"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static ArtGroup GetGroup(ArtGroupTag artGroupTag)
+        public static ArtGroup GetGroup(EArtGroup artGroupTag)
         {
             switch (artGroupTag)
             {
-                case ArtGroupTag.Globals: return Globals;
-                case ArtGroupTag.Camera: return Camera;
-                case ArtGroupTag.Sounds: return Sounds;
-                case ArtGroupTag.Rendering: return Rendering;
-                case ArtGroupTag.GamePlay: return Gameplay;
+                case EArtGroup.Globals: return Globals;
+                case EArtGroup.Camera: return Camera;
+                case EArtGroup.Sounds: return Sounds;
+                case EArtGroup.Rendering: return Rendering;
+                case EArtGroup.GamePlay: return Gameplay;
                 default: throw new ArgumentOutOfRangeException();
             }
         }
@@ -112,11 +112,11 @@ namespace XiGameTool.Core
             }
         }
 
-        public static bool GetVisible(ArtGroupTag artGrp)
+        public static bool GetVisible(EArtGroup artGrp)
         {
             return Groups[(int)artGrp].IsVisible;
         }
-        public static bool GetVisible(ArtGroupTag artGrp, ArtCategoryTag artCat)
+        public static bool GetVisible(EArtGroup artGrp, EArtCategory artCat)
         {
             return Groups[(int)artGrp].GetCategory(artCat).IsVisible;
         }
