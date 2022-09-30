@@ -24,19 +24,19 @@ namespace XiGameTool.Core.Editor
 				_buttonStyle.padding = new RectOffset(1,1,1,1);
 			}
 			if (_arrowDownIcon == null)
-				_arrowDownIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_arrow_down_white");
+				_arrowDownIcon = Resources.Load<Texture>("XiGameTool/Images/ui_arrow_down_white");
 			if (_visibleIcon == null)
-				_visibleIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_visible");
+				_visibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_visible");
 			if (_invisibleIcon == null)
-				_invisibleIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_invisible");
+				_invisibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_invisible");
 			if (_lockIcon == null)
-				_lockIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_lock");
+				_lockIcon = Resources.Load<Texture>("XiGameTool/Images/ui_lock");
 			if (_unlockIcon == null)
-				_unlockIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_unlock");		
+				_unlockIcon = Resources.Load<Texture>("XiGameTool/Images/ui_unlock");		
 			if (_layerImage == null)
-				_layerImage = Resources.Load<Texture>("XiGameTool/Icons/ui_layer");
+				_layerImage = Resources.Load<Texture>("XiGameTool/Images/ui_layer");
 			if (_colorFillIcon == null)
-				_colorFillIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_color_fill");
+				_colorFillIcon = Resources.Load<Texture>("XiGameTool/Images/ui_color_fill");
 			// -- initialize all sets --
 			var sets = ArtSets.Sets;
 			for (var i = 0; i < sets.Length; i++)

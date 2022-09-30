@@ -44,20 +44,20 @@ namespace XiGameTool.Core.Editor
 				_buttonStyle.padding = new RectOffset(1,1,1,1);
 			}
 			if (_arrowDownIcon == null)
-				_arrowDownIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_arrow_down_white");
+				_arrowDownIcon = Resources.Load<Texture>("XiGameTool/Images/ui_arrow_down_white");
 			if (_visibleIcon == null)
-				_visibleIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_visible");
+				_visibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_visible");
 			if (_invisibleIcon == null)
-				_invisibleIcon = Resources.Load<Texture>("XiGameTool/Icons/ui_invisible");
+				_invisibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_invisible");
 			
 			ArtGroups.Initialize();
 			
-			CreateGroupView(ArtGroups.Globals, "XiGameTool/Icons/grp_env_ball");
-			CreateGroupView(ArtGroups.Gameplay, "XiGameTool/Icons/grp_pacman");
-			CreateGroupView(ArtGroups.Camera, "XiGameTool/Icons/grp_camera");
-			CreateGroupView(ArtGroups.Sounds, "XiGameTool/Icons/grp_sound");
-			CreateGroupView(ArtGroups.Rendering, "XiGameTool/Icons/grp_rendering");
-			CreateGroupView(ArtGroups.Particles, "XiGameTool/Icons/grp_particle");
+			CreateGroupView(ArtGroups.Globals, "XiGameTool/Images/grp_env_ball");
+			CreateGroupView(ArtGroups.Gameplay, "XiGameTool/Images/grp_pacman");
+			CreateGroupView(ArtGroups.Camera, "XiGameTool/Images/grp_camera");
+			CreateGroupView(ArtGroups.Sounds, "XiGameTool/Images/grp_sound");
+			CreateGroupView(ArtGroups.Rendering, "XiGameTool/Images/grp_rendering");
+			CreateGroupView(ArtGroups.Particles, "XiGameTool/Images/grp_particle");
 			CountObjects();
 		}
 
@@ -211,12 +211,12 @@ namespace XiGameTool.Core.Editor
 			this.ArtGroup = artGroup;
 			Icon = Resources.Load<Texture>(iconName);
 			
-			_featureOverlays = CreateCategoryView(artGroup.FeatureOverlays, "XiGameTool/Icons/cat_overlay");
-			_navShapes = CreateCategoryView(artGroup.NavShapes, "XiGameTool/Icons/cat_navigation");
-			_traversal = CreateCategoryView(artGroup.Traversal, "XiGameTool/Icons/cat_traversal");
-			_actorsSpawners = CreateCategoryView(artGroup.ActorsSpawners, "XiGameTool/Icons/cat_actor");
-			_regions = CreateCategoryView(artGroup.Regions, "XiGameTool/Icons/cat_region");
-			_splines = CreateCategoryView(artGroup.Splines, "XiGameTool/Icons/cat_spline");
+			_featureOverlays = CreateCategoryView(artGroup.FeatureOverlays, "XiGameTool/Images/cat_overlay");
+			_navShapes = CreateCategoryView(artGroup.NavShapes, "XiGameTool/Images/cat_navigation");
+			_traversal = CreateCategoryView(artGroup.Traversal, "XiGameTool/Images/cat_traversal");
+			_actorsSpawners = CreateCategoryView(artGroup.ActorsSpawners, "XiGameTool/Images/cat_actor");
+			_regions = CreateCategoryView(artGroup.Regions, "XiGameTool/Images/cat_region");
+			_splines = CreateCategoryView(artGroup.Splines, "XiGameTool/Images/cat_spline");
 		}
 
 		private CategoryView CreateCategoryView(ArtCategory artCategory, string iconName)
