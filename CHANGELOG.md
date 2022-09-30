@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/hww/XiGameTool/compare/v1.1.1...v1.1.2) (2022-09-30)
+
+
+### Bug Fixes
+
+* **asm:** Renamed assembly file ([2a9902a](https://github.com/hww/XiGameTool/commit/2a9902a1105ac9237d777090b2730a7c25d5aeeb))
+
 ## [1.1.1](https://github.com/hww/XiGameTool/compare/v1.1.0...v1.1.1) (2022-09-30)
 
 
