@@ -10,8 +10,8 @@ namespace XiArtManager.Examples
         // Start is called before the first frame update
         void Start()
         {
-            ArtSets.SetLineColor(ArtSetTag.Default, Color.red);
-            ArtSets.SetLineColor(ArtSetTag.Scripted, Color.yellow);
+            ArtSets.SetLineColor(EArtSet.Default, Color.red);
+            ArtSets.SetLineColor(EArtSet.Scripted, Color.yellow);
 
             ArtLayers.SetLineColor(GameLayer.Default, Color.green);
             ArtLayers.SetLineColor(GameLayer.PostProcessing, Color.cyan);

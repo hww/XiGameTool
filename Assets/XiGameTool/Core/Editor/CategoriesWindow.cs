@@ -24,7 +24,7 @@ namespace XiGameTool.Core.Editor
 		private readonly GUILayoutOption _colorWidthOption = GUILayout.Width(50);
 
 		private GUIStyle _buttonStyle;
-		private readonly GroupView[] _groupViews = new GroupView[System.Enum.GetValues(typeof(ArtGroupTag)).Length];
+		private readonly GroupView[] _groupViews = new GroupView[System.Enum.GetValues(typeof(EArtGroup)).Length];
 		private Vector2 _scrollPos;
 
 
@@ -116,11 +116,11 @@ namespace XiGameTool.Core.Editor
         
 		private void CountObject(ArtPrimitive obj)
 		{
-			var group = GetGroup(obj.ArtGroupTag);
+			var group = GetGroup(obj.ArtGroup);
 			group.CountArtObject(obj);
 		}
 		
-		private GroupView GetGroup(ArtGroupTag artGroupTag)
+		private GroupView GetGroup(EArtGroup artGroupTag)
 		{
 			return _groupViews[(int) artGroupTag];
 		}
@@ -177,7 +177,7 @@ namespace XiGameTool.Core.Editor
 			// -- 2 ---------------------------------------------------
 			GUILayout.Box(categoryView.Icon, _buttonStyle, _iconWidthOption, _iconHeightOption);
 			// -- 3 ---------------------------------------------------
-			GUILayout.Label(category.ArtCategoryTag.ToString(), EditorStyles.largeLabel);
+			GUILayout.Label(category.Category.ToString(), EditorStyles.largeLabel);
 			// -- 4 ---------------------------------------------------
 			GUILayout.Label(categoryView.Quantity.ToString(), EditorStyles.boldLabel, _quantityWidthOption);
 		
@@ -192,7 +192,7 @@ namespace XiGameTool.Core.Editor
 	public class GroupView
 	{
 		public readonly Texture Icon;
-		public readonly CategoryView[] Categories = new CategoryView[(int)ArtCategoryTag.Count];
+		public readonly CategoryView[] Categories = new CategoryView[(int)EArtCategory.Count];
 		public readonly ArtGroup ArtGroup;
 		public int Quantity;
 
@@ -224,7 +224,7 @@ namespace XiGameTool.Core.Editor
 			if (artCategory == null)
 				return null;
 			var categoryView = new CategoryView(artCategory, iconName);
-			Categories[(int)categoryView.Category.ArtCategoryTag] = categoryView;
+			Categories[(int)categoryView.Category.Category] = categoryView;
 			return categoryView;
 		}
 		
@@ -237,24 +237,24 @@ namespace XiGameTool.Core.Editor
 		
 		public void CountArtObject(ArtPrimitive obj)
 		{
-			switch (obj.ArtCategoryTag)
+			switch (obj.ArtCategory)
 			{
-				case ArtCategoryTag.ActorsSpawners:
+				case EArtCategory.ActorsSpawners:
 					_actorsSpawners.Quantity++;
 					break;
-				case ArtCategoryTag.NavShapes:
+				case EArtCategory.NavShapes:
 					_navShapes.Quantity++;
 					break;
-				case ArtCategoryTag.Splines:
+				case EArtCategory.Splines:
 					_splines.Quantity++;
 					break;
-				case ArtCategoryTag.Regions:
+				case EArtCategory.Regions:
 					_regions.Quantity++;
 					break;
-				case ArtCategoryTag.Traversal:
+				case EArtCategory.Traversal:
 					_traversal.Quantity++;
 					break;
-				case ArtCategoryTag.FeatureOverlays:
+				case EArtCategory.FeatureOverlays:
 					_featureOverlays.Quantity++;
 					break;
 				default:

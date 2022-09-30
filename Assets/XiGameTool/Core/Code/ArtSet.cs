@@ -14,7 +14,7 @@ namespace XiGameTool.Core
     {
         const float DefaultColorA = 0.1f;
 
-        public ArtSetTag Tag;
+        public EArtSet Tag;
         public string Name;
         
         private readonly string _colorPreferenceNameR;
@@ -29,7 +29,7 @@ namespace XiGameTool.Core
         /// <param name="index"></param>
         /// <param name="name"></param>
         /// <param name="defaultColor"></param>
-        public ArtSet(ArtSetTag tag, string name, Color defaultColor)
+        public ArtSet(EArtSet tag, string name, Color defaultColor)
         {
             Name = name;
             Tag = tag;

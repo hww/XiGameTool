@@ -13,7 +13,7 @@ namespace XiGameTool.Core
     {
         const float DefaultFillColorAlpha = 0.1f;
 
-        public readonly ArtCategoryTag ArtCategoryTag;
+        public readonly EArtCategory Category;
         public readonly bool IsOptional;
 
         private readonly string _visiblePreferenceName;
@@ -25,10 +25,10 @@ namespace XiGameTool.Core
         /// <param name="groupTag">Parent group</param>
         /// <param name="categoryTag">Category tag</param>
         /// <param name="optional"></param>
-        public ArtCategory(ArtGroupTag groupTag, ArtCategoryTag categoryTag, bool optional)
+        public ArtCategory(EArtGroup groupTag, EArtCategory categoryTag, bool optional)
         {
             IsOptional = optional;
-            ArtCategoryTag = categoryTag;
+            Category = categoryTag;
             var artGroupName = groupTag.ToString();
             var categoryName = categoryTag.ToString();
             _visiblePreferenceName = $"CategoriesWindowVisible{artGroupName}{categoryName}";

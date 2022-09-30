@@ -12,32 +12,32 @@ namespace XiGameTool.Core
     {
         // Select the art group of this object
         [BoxGroup("Art Primitive")]
-        public ArtGroupTag ArtGroupTag;
+        public EArtGroup ArtGroup;
         
         // Select the art group of this object
         [BoxGroup("Art Primitive")]
-        public ArtCategoryTag ArtCategoryTag;
+        public EArtCategory ArtCategory;
         
         // Select the art set
         [BoxGroup("Art Primitive")]
-        public ArtSetTag ArtSetTag;
+        public EArtSet ArtSet;
 
         // Get group of this primitive 
         public ArtGroup GetArtGroup()
         {
-            return ArtGroups.GetGroup(ArtGroupTag);
+            return ArtGroups.GetGroup(ArtGroup);
         }
 
         // Get category of this primitive
         public ArtCategory GetArtCategory()
         {
-            return ArtGroups.GetGroup(ArtGroupTag).GetCategory(ArtCategoryTag);
+            return ArtGroups.GetGroup(ArtGroup).GetCategory(ArtCategory);
         }
 
         // Get category of this primitive
         public ArtSet GetArtSet()
         {
-            return ArtSets.GetArtSet(ArtSetTag);
+            return ArtSets.GetArtSet(ArtSet);
         }
     }
     

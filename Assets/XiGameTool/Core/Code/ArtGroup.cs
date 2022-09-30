@@ -10,9 +10,9 @@ namespace XiGameTool.Core
     /// </summary>
     public class ArtGroup
     {
-        public readonly ArtCategory[] Categories = new ArtCategory[(int)ArtCategoryTag.Count];
+        public readonly ArtCategory[] Categories = new ArtCategory[(int)EArtCategory.Count];
         
-        public ArtGroupTag ArtGroupTag;
+        public EArtGroup ArtGroupTag;
         public ArtCategory ActorsSpawners;
         public ArtCategory Regions;
         public ArtCategory Splines;
@@ -25,19 +25,19 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="groupTag"></param>
         /// <param name="color"></param>
-        public ArtGroup(ArtGroupTag groupTag)
+        public ArtGroup(EArtGroup groupTag)
         {
             ArtGroupTag = groupTag;
             var isOptional = true;
-            FeatureOverlays = CreateCategory(ArtCategoryTag.FeatureOverlays, isOptional);
-            NavShapes = CreateCategory(ArtCategoryTag.NavShapes, isOptional);
-            Traversal = CreateCategory(ArtCategoryTag.Traversal, isOptional);
-            ActorsSpawners = CreateCategory(ArtCategoryTag.ActorsSpawners, isOptional);
-            Regions = CreateCategory(ArtCategoryTag.Regions, isOptional);
-            Splines = CreateCategory(ArtCategoryTag.Splines, isOptional);
+            FeatureOverlays = CreateCategory(EArtCategory.FeatureOverlays, isOptional);
+            NavShapes = CreateCategory(EArtCategory.NavShapes, isOptional);
+            Traversal = CreateCategory(EArtCategory.Traversal, isOptional);
+            ActorsSpawners = CreateCategory(EArtCategory.ActorsSpawners, isOptional);
+            Regions = CreateCategory(EArtCategory.Regions, isOptional);
+            Splines = CreateCategory(EArtCategory.Splines, isOptional);
         }
                 
-        private ArtCategory CreateCategory(ArtCategoryTag categoryTag, bool optional = false)
+        private ArtCategory CreateCategory(EArtCategory categoryTag, bool optional = false)
         {
             return Categories[(int)categoryTag] = new ArtCategory(ArtGroupTag, categoryTag, optional);
         }
@@ -47,7 +47,7 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="categoryTag"></param>
         /// <returns></returns>
-        public ArtCategory GetCategory(ArtCategoryTag categoryTag)
+        public ArtCategory GetCategory(EArtCategory categoryTag)
         {
             return Categories[(int) categoryTag];
         }
