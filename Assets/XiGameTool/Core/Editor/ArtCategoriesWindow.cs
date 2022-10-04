@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
-	public class CategoriesWindow : EditorWindow {
+	public class ArtCategoriesWindow : EditorWindow {
 
 
 	
@@ -24,14 +24,14 @@ namespace XiGameTool.Core.Editor
 		private readonly GUILayoutOption _colorWidthOption = GUILayout.Width(50);
 
 		private GUIStyle _buttonStyle;
-		private readonly GroupView[] _groupViews = new GroupView[System.Enum.GetValues(typeof(EArtGroup)).Length];
+		private readonly GroupView[] _groupViews = new GroupView[System.Enum.GetValues(typeof(EArtCategory)).Length];
 		private Vector2 _scrollPos;
 
 
 		[MenuItem("Xi/Window/Categories")]
 		public static void ShowWindow ()
 		{
-			GetWindow<CategoriesWindow>("XiGameTool: Categories");
+			GetWindow<ArtCategoriesWindow>("XiGameTool: Categories");
 		}
 
 		void OnEnable()
@@ -50,18 +50,18 @@ namespace XiGameTool.Core.Editor
 			if (_invisibleIcon == null)
 				_invisibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_invisible");
 			
-			ArtGroups.Initialize();
+			ArtCategories.Initialize();
 			
-			CreateGroupView(ArtGroups.Globals, "XiGameTool/Images/grp_env_ball");
-			CreateGroupView(ArtGroups.Gameplay, "XiGameTool/Images/grp_pacman");
-			CreateGroupView(ArtGroups.Camera, "XiGameTool/Images/grp_camera");
-			CreateGroupView(ArtGroups.Sounds, "XiGameTool/Images/grp_sound");
-			CreateGroupView(ArtGroups.Rendering, "XiGameTool/Images/grp_rendering");
-			CreateGroupView(ArtGroups.Particles, "XiGameTool/Images/grp_particle");
+			CreateGroupView(ArtCategories.Globals, "XiGameTool/Images/grp_env_ball");
+			CreateGroupView(ArtCategories.Gameplay, "XiGameTool/Images/grp_pacman");
+			CreateGroupView(ArtCategories.Camera, "XiGameTool/Images/grp_camera");
+			CreateGroupView(ArtCategories.Sounds, "XiGameTool/Images/grp_sound");
+			CreateGroupView(ArtCategories.Rendering, "XiGameTool/Images/grp_rendering");
+			CreateGroupView(ArtCategories.Particles, "XiGameTool/Images/grp_particle");
 			CountObjects();
 		}
 
-		private GroupView CreateGroupView(ArtGroup artGroup, string iconName)
+		private GroupView CreateGroupView(ArtCategory artGroup, string iconName)
 		{
 			var groupView = new GroupView(artGroup, iconName);	
 			_groupViews[(int)artGroup.ArtGroupTag] = groupView;
@@ -80,7 +80,7 @@ namespace XiGameTool.Core.Editor
 		{
 			// -- render tool bar --
 			GUILayout.BeginHorizontal();
-			ArtGroups.ShowOptional = GUILayout.Toggle(ArtGroups.ShowOptional, "Display Oprional");
+			ArtCategories.ShowOptional = GUILayout.Toggle(ArtCategories.ShowOptional, "Display Oprional");
 			if (GUILayout.Button("Count"))
 				CountObjects();
 			GUILayout.EndHorizontal();
@@ -120,7 +120,7 @@ namespace XiGameTool.Core.Editor
 			group.CountArtObject(obj);
 		}
 		
-		private GroupView GetGroup(EArtGroup artGroupTag)
+		private GroupView GetGroup(EArtCategory artGroupTag)
 		{
 			return _groupViews[(int) artGroupTag];
 		}
@@ -152,7 +152,7 @@ namespace XiGameTool.Core.Editor
 			{
 				var category = categories[i];
 				
-				if (!ArtGroups.ShowOptional && category.IsOptional && category.Quantity == 0)
+				if (!ArtCategories.ShowOptional && category.IsOptional && category.Quantity == 0)
 					continue;
 				RenderCategory(category);
 			}
@@ -192,8 +192,8 @@ namespace XiGameTool.Core.Editor
 	public class GroupView
 	{
 		public readonly Texture Icon;
-		public readonly CategoryView[] Categories = new CategoryView[(int)EArtCategory.Count];
-		public readonly ArtGroup ArtGroup;
+		public readonly CategoryView[] Categories = new CategoryView[(int)EArtType.Count];
+		public readonly ArtCategory ArtGroup;
 		public int Quantity;
 
 
@@ -205,7 +205,7 @@ namespace XiGameTool.Core.Editor
 		private readonly CategoryView _regions;
 		private readonly CategoryView _splines;
 		
-		public GroupView(ArtGroup artGroup, string iconName)
+		public GroupView(ArtCategory artGroup, string iconName)
 		{
 			Debug.Assert(artGroup != null);
 			this.ArtGroup = artGroup;
@@ -219,7 +219,7 @@ namespace XiGameTool.Core.Editor
 			_splines = CreateCategoryView(artGroup.Splines, "XiGameTool/Images/cat_spline");
 		}
 
-		private CategoryView CreateCategoryView(ArtCategory artCategory, string iconName)
+		private CategoryView CreateCategoryView(ArtType artCategory, string iconName)
 		{
 			if (artCategory == null)
 				return null;
@@ -239,22 +239,22 @@ namespace XiGameTool.Core.Editor
 		{
 			switch (obj.ArtCategory)
 			{
-				case EArtCategory.ActorsSpawners:
+				case EArtType.ActorsSpawners:
 					_actorsSpawners.Quantity++;
 					break;
-				case EArtCategory.NavShapes:
+				case EArtType.NavShapes:
 					_navShapes.Quantity++;
 					break;
-				case EArtCategory.Splines:
+				case EArtType.Splines:
 					_splines.Quantity++;
 					break;
-				case EArtCategory.Regions:
+				case EArtType.Regions:
 					_regions.Quantity++;
 					break;
-				case EArtCategory.Traversal:
+				case EArtType.Traversal:
 					_traversal.Quantity++;
 					break;
-				case EArtCategory.FeatureOverlays:
+				case EArtType.FeatureOverlays:
 					_featureOverlays.Quantity++;
 					break;
 				default:
@@ -281,11 +281,11 @@ namespace XiGameTool.Core.Editor
 	public  class CategoryView
 	{
 		public readonly Texture Icon;
-		public readonly ArtCategory Category;
+		public readonly ArtType Category;
 		public readonly bool IsOptional;
 		public int Quantity;
 		
-		public CategoryView(ArtCategory category, string iconName)
+		public CategoryView(ArtType category, string iconName)
 		{
 			this.Category = category;
 			IsOptional = category.IsOptional;

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
-    public static class LayersTools
+    public static class GameLayersTools
     {
         // ====================================================================
         // Statistics

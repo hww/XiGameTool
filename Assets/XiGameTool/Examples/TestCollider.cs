@@ -13,9 +13,9 @@ namespace XiArtManager.Examples
         // Update is called once per frame
         void OnDrawGizmos()
         {
-            if (ArtSets.GetVisible(ArtSet) && ArtGroups.GetVisible(ArtGroup, ArtCategory))
+            if (ArtSets.GetVisible(ArtSet) && ArtCategories.GetVisible(ArtGroup, ArtCategory))
             {
-                Gizmos.color = ArtLayers.GetLineColor(gameObject.layer);
+                Gizmos.color = GameLayers.GetLineColor(gameObject.layer);
                 boxCollider = (boxCollider == null) ? GetComponent<BoxCollider>() : boxCollider;
                 Gizmos.DrawWireCube(transform.position, boxCollider.size);
                 UnityEditor.Handles.Label(transform.position, gameObject.name);

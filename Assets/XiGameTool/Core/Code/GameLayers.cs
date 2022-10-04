@@ -8,16 +8,16 @@ using UnityEngine;
 
 namespace XiGameTool.Core
 {
-    public static class ArtLayers
+    public static class GameLayers
     {
-        public static readonly ArtLayer[] Layers = new ArtLayer[32];
+        public static readonly GameLayer[] Layers = new GameLayer[32];
 
-        static ArtLayers()
+        static GameLayers()
         {
             // -- initialize all layers --
-            var layersValues = Enum.GetValues(typeof(GameLayer));
+            var layersValues = Enum.GetValues(typeof(EGameLayer));
             foreach (var layer in layersValues)
-                Layers[(int) layer] = new ArtLayer((int) layer, ((GameLayer) layer).ToString(), Color.white);
+                Layers[(int) layer] = new GameLayer((int) layer, ((EGameLayer) layer).ToString(), Color.white);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="gameLayer"></param>
         /// <returns></returns>
-        public static ArtLayer GetLayer(GameLayer gameLayer)
+        public static GameLayer GetLayer(EGameLayer gameLayer)
         {
             return Layers[(int) gameLayer];
         }
@@ -35,7 +35,7 @@ namespace XiGameTool.Core
         /// </summary>
         /// <param name="gameLayer"></param>
         /// <returns></returns>
-        public static ArtLayer GetLayer(int gameLayer)
+        public static GameLayer GetLayer(int gameLayer)
         {
             return Layers[gameLayer];
         }
@@ -45,7 +45,7 @@ namespace XiGameTool.Core
             return Layers[gameLayer].Color;
         }
 
-        public static Color GetLineColor(GameLayer gameLayer)
+        public static Color GetLineColor(EGameLayer gameLayer)
         {
             return Layers[(int)gameLayer].Color;
         }
@@ -55,7 +55,7 @@ namespace XiGameTool.Core
             Layers[gameLayer].Color = color;
         }
 
-        public static void SetLineColor(GameLayer gameLayer, Color color)
+        public static void SetLineColor(EGameLayer gameLayer, Color color)
         {
             Layers[(int)gameLayer].Color = color;
         }

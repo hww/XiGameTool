@@ -13,8 +13,8 @@ namespace XiArtManager.Examples
             ArtSets.SetLineColor(EArtSet.Default, Color.red);
             ArtSets.SetLineColor(EArtSet.Scripted, Color.yellow);
 
-            ArtLayers.SetLineColor(GameLayer.Default, Color.green);
-            ArtLayers.SetLineColor(GameLayer.PostProcessing, Color.cyan);
+            GameLayers.SetLineColor(EGameLayer.Default, Color.green);
+            GameLayers.SetLineColor(EGameLayer.PostProcessing, Color.cyan);
         }
 
         // Update is called once per frame
