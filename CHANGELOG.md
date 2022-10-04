@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/hww/XiGameTool/compare/v1.1.3...v1.1.4) (2022-10-04)
+
+
+### Bug Fixes
+
+* **core:** Re factored names for next features ([eb9e9d6](https://github.com/hww/XiGameTool/commit/eb9e9d692935c663c82e7bae412e2a24335bfccb))
+
 ## [1.1.3](https://github.com/hww/XiGameTool/compare/v1.1.2...v1.1.3) (2022-09-30)
 
 
