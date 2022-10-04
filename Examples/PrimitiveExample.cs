@@ -9,7 +9,7 @@ namespace XiArtManager.Examples
 
         void OnDrawGizmos()
         {
-            if (ArtSets.GetVisible(ArtSet) && ArtGroups.GetVisible(ArtGroup, ArtCategory))
+            if (ArtSets.GetVisible(ArtSet) && ArtCategories.GetVisible(ArtGroup, ArtCategory))
             {
                 Gizmos.color = ArtSets.GetLineColor(ArtSet);
                 Gizmos.DrawWireSphere(transform.position, 1f);

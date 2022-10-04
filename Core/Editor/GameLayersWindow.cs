@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
-	public class LayersWindow : EditorWindow {
+	public class GameLayersWindow : EditorWindow {
 
 		[MenuItem("Xi/Window/Unity Layers")]
 		public static void ShowWindow ()
 		{
-			GetWindow<LayersWindow>("XiGameTool: Unity Layers");
+			GetWindow<GameLayersWindow>("XiGameTool: Unity Layers");
 		}
 
 		void OnEnable()
@@ -37,7 +37,7 @@ namespace XiGameTool.Core.Editor
 				_layerImage = Resources.Load<Texture>("XiGameTool/Images/ui_layer");
 
 			// -- initialize all layers --
-			var layers = ArtLayers.Layers;
+			var layers = GameLayers.Layers;
 			for (var i = 0; i < layers.Length; i++)
 			{
 				var layer = layers[i];
@@ -129,10 +129,10 @@ namespace XiGameTool.Core.Editor
 		public class LayerView
 		{
 			public Texture Icon;
-			public ArtLayer Layer;
+			public GameLayer Layer;
 			public int Quantity;
 			
-			public LayerView(ArtLayer layer, string iconName)
+			public LayerView(GameLayer layer, string iconName)
 			{
 				Layer = layer;
 				Icon = Resources.Load<Texture>(iconName);
@@ -142,7 +142,7 @@ namespace XiGameTool.Core.Editor
 		public static void CountObjects()
 		{
 			if (LayerViews == null) return;
-			var counts = LayersTools.CountObjectsInAllLayers();
+			var counts = GameLayersTools.CountObjectsInAllLayers();
 			for (var i = 0; i < LayerViews.Length; i++)
 			{
 				var layer = LayerViews[i];

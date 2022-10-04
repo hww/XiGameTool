@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
-	public class SetsWindow : EditorWindow {
+	public class ArtSetsWindow : EditorWindow {
 
 		[MenuItem("Xi/Window/Sets")]
 		public static void ShowWindow ()
 		{
-			GetWindow<SetsWindow>("XiGameTool: Sets");
+			GetWindow<ArtSetsWindow>("XiGameTool: Sets");
 		}
 
 		void OnEnable()
@@ -105,7 +105,7 @@ namespace XiGameTool.Core.Editor
 			// -- 3 ---------------------------------------------------
 			if (GUILayout.Button(_colorFillIcon, _buttonStyle, _iconWidthOption, _iconHeightOption))
 			{
-				SetsTools.AssignArtSet(setView.ArtSet.Tag);
+				ArtSetsTools.AssignArtSet(setView.ArtSet.Tag);
 				CountObjects();
 			}
 			// -- 2 ---------------------------------------------------
@@ -141,7 +141,7 @@ namespace XiGameTool.Core.Editor
 		public static void CountObjects()
 		{
 			if (SetViews == null) return;
-			var counts = SetsTools.CountInAllSets();
+			var counts = ArtSetsTools.CountInAllSets();
 			for (var i = 0; i < SetViews.Length; i++)
 			{
 				var layer = SetViews[i];

@@ -1,67 +1,79 @@
 /* Copyright(c) 2021 Valeriya Pudova(hww.github.io) read more at the license file  */
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+using UnityEngine;
 
-namespace XiGameTool.Core 
+
+namespace XiGameTool.Core
 {
     /// <summary>
-    ///     Settings for single category
+    /// Settings for single group. Each group contains several categories
     /// </summary>
     public class ArtCategory
     {
-        const float DefaultFillColorAlpha = 0.1f;
-
-        public readonly EArtCategory Category;
-        public readonly bool IsOptional;
-
-        private readonly string _visiblePreferenceName;
-        private bool _isVisible;
+        public readonly ArtType[] Categories = new ArtType[(int)EArtType.Count];
+        
+        public EArtCategory ArtGroupTag;
+        public ArtType ActorsSpawners;
+        public ArtType Regions;
+        public ArtType Splines;
+        public ArtType FeatureOverlays;
+        public ArtType NavShapes;
+        public ArtType Traversal;
 
         /// <summary>
-        ///     Construct new category
+        ///     Construct new art group
         /// </summary>
-        /// <param name="groupTag">Parent group</param>
-        /// <param name="categoryTag">Category tag</param>
-        /// <param name="optional"></param>
-        public ArtCategory(EArtGroup groupTag, EArtCategory categoryTag, bool optional)
+        /// <param name="groupTag"></param>
+        /// <param name="color"></param>
+        public ArtCategory(EArtCategory groupTag)
         {
-            IsOptional = optional;
-            Category = categoryTag;
-            var artGroupName = groupTag.ToString();
-            var categoryName = categoryTag.ToString();
-            _visiblePreferenceName = $"CategoriesWindowVisible{artGroupName}{categoryName}";
-            _isVisible = GetVisibleInternal(true);
+            ArtGroupTag = groupTag;
+            var isOptional = true;
+            FeatureOverlays = CreateCategory(EArtType.FeatureOverlays, isOptional);
+            NavShapes = CreateCategory(EArtType.NavShapes, isOptional);
+            Traversal = CreateCategory(EArtType.Traversal, isOptional);
+            ActorsSpawners = CreateCategory(EArtType.ActorsSpawners, isOptional);
+            Regions = CreateCategory(EArtType.Regions, isOptional);
+            Splines = CreateCategory(EArtType.Splines, isOptional);
+        }
+                
+        private ArtType CreateCategory(EArtType categoryTag, bool optional = false)
+        {
+            return Categories[(int)categoryTag] = new ArtType(ArtGroupTag, categoryTag, optional);
         }
 
         /// <summary>
-        ///     Is this category visible? Will set to true or false the categories belong
+        ///     Get category in this group
+        /// </summary>
+        /// <param name="categoryTag"></param>
+        /// <returns></returns>
+        public ArtType GetCategory(EArtType categoryTag)
+        {
+            return Categories[(int) categoryTag];
+        }
+        
+        /// <summary>
+        ///     Is this group visible or not
         /// </summary>
         public bool IsVisible
         {
-            get => _isVisible;
+            get
+            {
+                var count = Categories.Length;
+                for (var i = 0; i < count; i++)
+                {
+                    var category = Categories[i];
+                    if (category.IsVisible)
+                        return true;
+                }
+                return false;
+            }
             set
             {
-                _isVisible = value;
-                SetVisibleInternal(value);
+                var count = Categories.Length;
+                for (var i = 0; i < count; i++)
+                    Categories[i].IsVisible = value;
             }
-        }
-
-        private bool GetVisibleInternal(bool defaultValue)
-        {
-#if UNITY_EDITOR
-            return EditorPrefs.GetBool(_visiblePreferenceName, defaultValue);
-#else
-			return defaultValue;
-#endif
-        }
-
-        private void SetVisibleInternal(bool value)
-        {
-#if UNITY_EDITOR
-            EditorPrefs.SetBool(_visiblePreferenceName, value);
-#endif
         }
     }
 }

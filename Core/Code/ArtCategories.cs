@@ -6,46 +6,46 @@ using UnityEngine;
 
 namespace XiGameTool.Core
 {
-    public static class ArtGroups
+    public static class ArtCategories
     {
         /// <summary>
         ///     Specialized for camera management
         /// </summary>
-        public static ArtGroup Camera;
+        public static ArtCategory Camera;
 
         /// <summary>
         ///     Specialized for particles and effects management
         /// </summary>
-        public static ArtGroup Particles;
+        public static ArtCategory Particles;
 
         /// <summary>
         ///     Specialized for sounds and listeners management
         /// </summary>
-        public static ArtGroup Sounds;
+        public static ArtCategory Sounds;
 
         /// <summary>
         ///     Not fit to any group
         /// </summary>
-        public static ArtGroup Globals;
+        public static ArtCategory Globals;
 
         /// <summary>
         ///     Specialized for GUI, Rendering, Lighting, and PostFX
         /// </summary>
-        public static ArtGroup Rendering;
+        public static ArtCategory Rendering;
 
         /// <summary>
         ///     Specialized for game play behaviour
         /// </summary>
-        public static ArtGroup Gameplay;
+        public static ArtCategory Gameplay;
 
-        private static readonly ArtGroup[] Groups = new ArtGroup[System.Enum.GetValues(typeof(EArtGroup)).Length];
+        private static readonly ArtCategory[] Groups = new ArtCategory[System.Enum.GetValues(typeof(EArtCategory)).Length];
         private static bool _isInitialized;
         private static bool _showOptional;
 
         /// <summary>
         ///     Static constructor
         /// </summary>
-        static ArtGroups()
+        static ArtCategories()
         {
             Initialize();
         }
@@ -58,17 +58,17 @@ namespace XiGameTool.Core
             if (_isInitialized) return;
             _isInitialized = true;
 
-            Globals = CreateGroup(EArtGroup.Globals);
-            Gameplay = CreateGroup(EArtGroup.GamePlay);
-            Camera = CreateGroup(EArtGroup.Camera);
-            Sounds = CreateGroup(EArtGroup.Sounds);
-            Rendering = CreateGroup(EArtGroup.Rendering);
-            Particles = CreateGroup(EArtGroup.Particles);
+            Globals = CreateGroup(EArtCategory.Globals);
+            Gameplay = CreateGroup(EArtCategory.GamePlay);
+            Camera = CreateGroup(EArtCategory.Camera);
+            Sounds = CreateGroup(EArtCategory.Sounds);
+            Rendering = CreateGroup(EArtCategory.Rendering);
+            Particles = CreateGroup(EArtCategory.Particles);
         }
 
-        private static ArtGroup CreateGroup(EArtGroup groupTag)
+        private static ArtCategory CreateGroup(EArtCategory groupTag)
         {
-            var group = new ArtGroup(groupTag);
+            var group = new ArtCategory(groupTag);
             Groups[(int) group.ArtGroupTag] = group;
             return group;
         }
@@ -79,15 +79,15 @@ namespace XiGameTool.Core
         /// <param name="artGroupTag"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public static ArtGroup GetGroup(EArtGroup artGroupTag)
+        public static ArtCategory GetGroup(EArtCategory artGroupTag)
         {
             switch (artGroupTag)
             {
-                case EArtGroup.Globals: return Globals;
-                case EArtGroup.Camera: return Camera;
-                case EArtGroup.Sounds: return Sounds;
-                case EArtGroup.Rendering: return Rendering;
-                case EArtGroup.GamePlay: return Gameplay;
+                case EArtCategory.Globals: return Globals;
+                case EArtCategory.Camera: return Camera;
+                case EArtCategory.Sounds: return Sounds;
+                case EArtCategory.Rendering: return Rendering;
+                case EArtCategory.GamePlay: return Gameplay;
                 default: throw new ArgumentOutOfRangeException();
             }
         }
@@ -112,11 +112,11 @@ namespace XiGameTool.Core
             }
         }
 
-        public static bool GetVisible(EArtGroup artGrp)
+        public static bool GetVisible(EArtCategory artGrp)
         {
             return Groups[(int)artGrp].IsVisible;
         }
-        public static bool GetVisible(EArtGroup artGrp, EArtCategory artCat)
+        public static bool GetVisible(EArtCategory artGrp, EArtType artCat)
         {
             return Groups[(int)artGrp].GetCategory(artCat).IsVisible;
         }
