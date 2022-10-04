@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/hww/XiGameTool/compare/v1.1.2...v1.1.3) (2022-09-30)
+
+
+### Bug Fixes
+
+* **files:** Renamed folder to  fix the gitignore ([06f3f02](https://github.com/hww/XiGameTool/commit/06f3f02034904743ad82bcf3cc13b6502972c0ab))
+
 ## [1.1.2](https://github.com/hww/XiGameTool/compare/v1.1.1...v1.1.2) (2022-09-30)
 
 
