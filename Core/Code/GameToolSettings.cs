@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using XiGameTool.Core;
@@ -58,6 +59,16 @@ namespace XiGameTool
             foreach (var lay in GameTool.Layers.AllLayers)
                 lay.Quantity = 0;
         }
+
+        #region GameTypes
+        [NaughtyAttributes.Button]
+        void SaveAsset()
+        {
+            var path1 = UnityEditor.AssetDatabase.GetAssetPath(this);
+            var path2 = path1.Replace(name, $"{name}_{System.DateTime.Now.Ticks}");
+            UnityEditor.AssetDatabase.CopyAsset(path1, path2);
+        }
+        #endregion
 
         /** The Game Type **/
 
