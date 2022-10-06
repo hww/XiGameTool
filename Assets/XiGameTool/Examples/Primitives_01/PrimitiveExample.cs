@@ -4,14 +4,14 @@ using XiGameTool.Core;
 
 namespace XiArtManager.Examples
 {
-    public class PrimitiveExample : ArtPrimitive
+    public class PrimitiveExample : GamePrimitive
     {
 
         void OnDrawGizmos()
         {
-            if (ArtSets.GetVisible(ArtSet) && ArtCategories.GetVisible(ArtGroup, ArtCategory))
+            if (SelectionSet.IsVisible && Subcategory.IsVisible)
             {
-                Gizmos.color = ArtSets.GetLineColor(ArtSet);
+                Gizmos.color = SelectionSet.Color;
                 Gizmos.DrawWireSphere(transform.position, 1f);
                 UnityEditor.Handles.Label(transform.position, gameObject.name);
             }        

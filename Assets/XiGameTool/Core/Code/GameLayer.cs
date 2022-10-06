@@ -12,15 +12,15 @@ namespace XiGameTool.Core
     /// </summary>
     public class GameLayer
     {
-        const float DefaultColorA = 0.1f;
+        const float kDefaultColorA = 0.1f;
 
-        public int Index;
-        public int Mask;
-        public string Name;
+        private string _name;
+        private int _index;
+        private int _mask;
+        private int _quantity;
+        private Texture _icon;
 
-        private readonly string _colorPreferenceNameR;
-        private readonly string _colorPreferenceNameG;
-        private readonly string _colorPreferenceNameB;
+        private string _colorPreferenceFormat;
 
         /// <summary>
         ///     Construct new layer
@@ -28,18 +28,20 @@ namespace XiGameTool.Core
         /// <param name="index"></param>
         /// <param name="name"></param>
         /// <param name="defaultColor"></param>
-        public GameLayer(int index, string name, Color defaultColor)
+        public GameLayer(int index, string name, Color defaultColor, Texture icon = null)
         {
-            Name = name;
-            Index = index;
-            Mask = 1 << index;
-            _colorPreferenceNameR = "LayersWindowColorR_" + name;
-            _colorPreferenceNameG = "LayersWindowColorG_" + name;
-            _colorPreferenceNameB = "LayersWindowColorB_" + name;
-            _color = GetColorInternal(defaultColor);
-            _fillColor = _color;
-            _fillColor.a = DefaultColorA;
+            _name = name;
+            _index = index;
+            _mask = 1 << index;
+            _defaultColor = defaultColor;
+            _colorPreferenceFormat = $"GameLayer_{name}_{{0}}";
+            _icon = Icon;
+            LoadPreferences();
         }
+        public int Index =>_index;
+        public int Mask =>_mask;
+        public string Name => _name;
+        public Texture Icon => _icon ?? Texture2D.redTexture;
 
         /// <summary>
         ///     Is this layer locked
@@ -92,7 +94,8 @@ namespace XiGameTool.Core
         }
 
         private Color _color;
-        
+        private Color _defaultColor;
+
         /// <summary>
         ///     Get color of this layer
         /// </summary>
@@ -101,43 +104,54 @@ namespace XiGameTool.Core
             get => _color;
             set
             {
-                if (_color != value) 
-                    SetColorInternal(value);
-                _color = value;
-                _fillColor = value;
-                _fillColor.a = DefaultColorA;
+                if (_color != value)
+                {
+                    _color = value;
+                    SavePreferences();
+                }
             }
         }
 
-        private Color _fillColor;
         
         /// <summary>
         ///     Get fill color of this layer. Usually same as color but more transparent
         /// </summary>
         public Color FillColor
         {
-            get => _fillColor;
-            set => _fillColor = value;
+            get => new Color(_color.r, _color.g, _color.b, kDefaultColorA);
         }
 
-        private void SetColorInternal(Color value)
+        public int Quantity
+        {
+            get => _quantity;
+            set => _quantity = value;
+        }
+
+        private void SavePreferences()
         {
 #if UNITY_EDITOR
-            EditorPrefs.SetFloat(_colorPreferenceNameR, value.r);
-            EditorPrefs.SetFloat(_colorPreferenceNameG, value.g);
-            EditorPrefs.SetFloat(_colorPreferenceNameB, value.b);
+            EditorPrefs.SetFloat(string.Format(_colorPreferenceFormat, "R"), _color.r);
+            EditorPrefs.SetFloat(string.Format(_colorPreferenceFormat, "G"), _color.g);
+            EditorPrefs.SetFloat(string.Format(_colorPreferenceFormat, "B"), _color.b);
 #endif
         }
 
-        private Color GetColorInternal(Color defaultValue)
+        private void LoadPreferences()
         {
 #if UNITY_EDITOR
-            var r = EditorPrefs.GetFloat(_colorPreferenceNameR, defaultValue.r);
-            var g = EditorPrefs.GetFloat(_colorPreferenceNameG, defaultValue.g);
-            var b = EditorPrefs.GetFloat(_colorPreferenceNameB, defaultValue.b);
-            return new Color(r, g, b);
-#else
-			return defaultValue;
+            var r = EditorPrefs.GetFloat(string.Format(_colorPreferenceFormat, "R"), _defaultColor.r);
+            var g = EditorPrefs.GetFloat(string.Format(_colorPreferenceFormat, "G"), _defaultColor.g);
+            var b = EditorPrefs.GetFloat(string.Format(_colorPreferenceFormat, "B"), _defaultColor.b);
+            _color = new Color(r, g, b);
+#endif
+        }
+
+        private void ClearPreferences()
+        {
+#if UNITY_EDITOR
+            EditorPrefs.DeleteKey(string.Format(_colorPreferenceFormat, "R"));
+            EditorPrefs.DeleteKey(string.Format(_colorPreferenceFormat, "G"));
+            EditorPrefs.DeleteKey(string.Format(_colorPreferenceFormat, "B"));
 #endif
         }
     }

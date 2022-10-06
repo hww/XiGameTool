@@ -10,11 +10,11 @@ namespace XiArtManager.Examples
         // Start is called before the first frame update
         void Start()
         {
-            ArtSets.SetLineColor(EArtSet.Default, Color.red);
-            ArtSets.SetLineColor(EArtSet.Scripted, Color.yellow);
-
-            GameLayers.SetLineColor(EGameLayer.Default, Color.green);
-            GameLayers.SetLineColor(EGameLayer.PostProcessing, Color.cyan);
+            //ArtSetSettings.SetColor(EArtSet.Default, Color.red);
+            //ArtSetSettings.SetColor(EArtSet.Scripted, Color.yellow);
+            //
+            //GameLayers.SetColor(EGameLayer.Default, Color.green);
+            //GameLayers.SetColor(EGameLayer.PostProcessing, Color.cyan);
         }
 
         // Update is called once per frame

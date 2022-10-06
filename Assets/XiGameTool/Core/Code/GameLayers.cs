@@ -2,62 +2,116 @@
 
 #if UNITY_EDITOR
 using System;
+using System.Linq;
 using UnityEditor;
 #endif
 using UnityEngine;
 
 namespace XiGameTool.Core
 {
-    public static class GameLayers
+    public static partial class GameTool
     {
-        public static readonly GameLayer[] Layers = new GameLayer[32];
-
-        static GameLayers()
+        public static class Layers
         {
-            // -- initialize all layers --
-            var layersValues = Enum.GetValues(typeof(EGameLayer));
-            foreach (var layer in layersValues)
-                Layers[(int) layer] = new GameLayer((int) layer, ((EGameLayer) layer).ToString(), Color.white);
-        }
 
-        /// <summary>
-        ///     Get art layer by tag
-        /// </summary>
-        /// <param name="gameLayer"></param>
-        /// <returns></returns>
-        public static GameLayer GetLayer(EGameLayer gameLayer)
-        {
-            return Layers[(int) gameLayer];
-        }
+            private static string[] s_LayerNames;
+            private static GameLayer[] s_AllLayers;
+            public static string[] GetLayerNames()
+            {
 
-        /// <summary>
-        ///     Get art layer by integer index (same at is in Unity)
-        /// </summary>
-        /// <param name="gameLayer"></param>
-        /// <returns></returns>
-        public static GameLayer GetLayer(int gameLayer)
-        {
-            return Layers[gameLayer];
-        }
+                if (s_LayerNames == null)
+                {
+#if UNITY_EDITOR
+                    s_LayerNames = Enumerable.Range(0, 32).Select(index => LayerMask.LayerToName(index)).ToArray();
+#else
+                    s_LayerNames = new string[32];
+#endif
+                    OnSetLayerNames();
+                }
+                return s_LayerNames;
+            }
+            public static void SetLayerNames(string[] names)
+            {
+                UnityEngine.Debug.Assert(names.Length == 32);
+                s_LayerNames = names;
+                OnSetLayerNames();
+                for (var i = 0; i < names.Length; i++)
+                    s_AllLayers[i] = new GameLayer(i, names[i], Color.white);
+            }
 
-        public static Color GetLineColor(int gameLayer)
-        {
-            return Layers[gameLayer].Color;
-        }
+            private static void OnSetLayerNames()
+            {
+                // Make a name for not named
+                for (var i = 0; i < s_LayerNames.Length; i++)
+                {
+                    if (string.IsNullOrEmpty(s_LayerNames[i]))
+                        s_LayerNames[i] = $"Layer {i}";
+                }
+            }
+     
 
-        public static Color GetLineColor(EGameLayer gameLayer)
-        {
-            return Layers[(int)gameLayer].Color;
-        }
+            public static GameLayer[] AllLayers
+            {
+                get
+                {
+                    if (s_AllLayers == null)
+                    {
+                        s_AllLayers = new GameLayer[32];
+                        var names = GetLayerNames();
+                        for (var i = 0; i < 32; i++)
+                        {
+                            s_AllLayers[i] = new GameLayer(i, names[i], Color.white);
+                        }
+                    }
+                    return s_AllLayers;
+                }
+            }
+            // <summary>
+            //     Get art layer by tag
+            // </summary>
+            // <param name="layerNum"></param>
+            // <returns></returns>
+            public static GameLayer Find(string name)
+            {
+                var names = GetLayerNames();
+                for (var i = 0; i < names.Length; i++)
+                {
+                    if (names[i] == name)
+                        return s_AllLayers[i];
+                }
+                Debug.LogError($"Layer {name} was not found");
+                return null;
+            }
 
-        public static void SetLineColor(int gameLayer, Color color)
-        {
-            Layers[gameLayer].Color = color;
-        }
+            // <summary>
+            //     Get art layer by tag
+            // </summary>
+            // <param name="layerNum"></param>
+            // <returns></returns>
+            public static GameLayer Find(int id)
+            {
+                return s_AllLayers[id];
+            }
 
-        public static void SetLineColor(EGameLayer gameLayer, Color color)
-        {
-            Layers[(int)gameLayer].Color = color;
+            /// <summary>
+            ///     Get art layer by integer index (same at is in Unity)
+            /// </summary>
+            /// <param name="layerNum"></param>
+            /// <returns></returns>
+            public static GameLayer GetLayer(int layerNum)
+            {
+                return s_AllLayers[layerNum];
+            }
+
+            public static Color GetColor(int layerNum)
+            {
+                return s_AllLayers[layerNum].Color;
+            }
+
+            public static void SetColor(int layerNum, Color color)
+            {
+                s_AllLayers[layerNum].Color = color;
+            }
         }
     }
 }

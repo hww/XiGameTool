@@ -6,28 +6,33 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
-	public class GameLayersWindow : EditorWindow {
+	public class SelectionSetWindow : EditorWindow {
 
-		[MenuItem("Xi/Window/Unity Layers")]
+		[MenuItem("Xi/Window/Selection Sets")]
 		public static void ShowWindow ()
 		{
-			GetWindow<GameLayersWindow>("XiGameTool: Unity Layers");
+			GetWindow<SelectionSetWindow>("XiGameTool: Selection Sets");
 		}
 
 		void OnEnable()
 		{
 			EditorApplication.hierarchyChanged -= GameTool.CountAllObjects;
 			EditorApplication.hierarchyChanged += GameTool.CountAllObjects;
-			_buttonStyle = new GUIStyle();
-			_buttonStyle.padding = new RectOffset(1,1,1,1);
+			if (_buttonStyle == null)
+			{
+				_buttonStyle = new GUIStyle();
+				_buttonStyle.padding = new RectOffset(1,1,1,1);
+			}
 			_arrowDownIcon = Resources.Load<Texture>("XiGameTool/Images/ui_arrow_down_white");
 			_visibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_visible");
 			_invisibleIcon = Resources.Load<Texture>("XiGameTool/Images/ui_invisible");
 			_lockIcon = Resources.Load<Texture>("XiGameTool/Images/ui_lock");
 			_unlockIcon = Resources.Load<Texture>("XiGameTool/Images/ui_unlock");		
 			_layerImage = Resources.Load<Texture>("XiGameTool/Images/ui_layer");
+			_colorFillIcon = Resources.Load<Texture>("XiGameTool/Images/ui_color_fill");
+			_artSetIcon = Resources.Load<Texture>("XiGameTool/Images/ui_set");
 
-			CountObjects();		
+			GameTool.CountAllObjects();		
 		}
 	
 		private static Texture _arrowDownIcon;
@@ -36,7 +41,9 @@ namespace XiGameTool.Core.Editor
 		private static Texture _lockIcon;
 		private static Texture _unlockIcon;
 		private static Texture _layerImage;
-	 
+		private static Texture _colorFillIcon;
+		private static Texture _artSetIcon;
+
 		private const float IconWidth = 22;
 		private const float IconHeight = 20;
 		private readonly GUILayoutOption _iconWidthOption = GUILayout.Width(IconWidth);
@@ -56,24 +63,14 @@ namespace XiGameTool.Core.Editor
 				SceneView.RepaintAll();
 			}
 			GUILayout.EndHorizontal();
-
-			EditorGUILayout.HelpBox("Reserved by Unity layers", MessageType.None);
 			DrawSeparator();
 
 			_scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
-			// -- render layers --
-			var layers = GameTool.Layers.AllLayers;
-			for (var i = 0; i < layers.Length; i++)
+			// -- render sets --
+
+			foreach (var artSet in GameTool.SelectionSets)
 			{
-				var layer = layers[i];
-				if (layer!=null)
-					RenderLayer(layer);
-				// draw separator after unity default layers
-				if (i == 7)
-				{
-					GUILayout.Box("", new GUILayoutOption[]{GUILayout.ExpandWidth(true), GUILayout.Height(1)});
-					EditorGUILayout.HelpBox("Reserved for Game layers", MessageType.None);
-				}
+				RenderSet(artSet);
 			}
 			EditorGUILayout.EndScrollView();
 		}
@@ -84,37 +81,37 @@ namespace XiGameTool.Core.Editor
 		/// <summary>
 		/// Render single line
 		/// </summary>
-		private void RenderLayer(GameLayer layer)
+		private void RenderSet(SelectionSet aset)
 		{
+	
 			GUILayout.BeginHorizontal();
 			// -- 1 ---------------------------------------------------
-			var isVisible = layer.IsVisible;
-			if (GUILayout.Button( isVisible ? _visibleIcon : _invisibleIcon, _buttonStyle, _iconWidthOption, _iconHeightOption))
-				layer.IsVisible = !isVisible;
-			var isLock = layer.IsLocked;
-			if (GUILayout.Button( isLock ? _lockIcon : _unlockIcon, _buttonStyle, _iconWidthOption, _iconHeightOption))
-				layer.IsLocked = !isLock;
+			var isVisible = aset.IsVisible;
+			if (GUILayout.Button(isVisible ? _visibleIcon : _invisibleIcon, _buttonStyle, _iconWidthOption, _iconHeightOption))
+			{
+				aset.IsVisible = !isVisible;
+				SceneView.RepaintAll();
+			}
+			// -- 3 ---------------------------------------------------
+			if (GUILayout.Button(_colorFillIcon, _buttonStyle, _iconWidthOption, _iconHeightOption))
+			{
+				SelectionSetTools.AssignArtSet(aset);
+				GameTool.CountAllObjects();
+				SceneView.RepaintAll();
+			}
 			// -- 2 ---------------------------------------------------
-			layer.Color = EditorGUILayout.ColorField( layer.Color, _colorWidthOption);
+			aset.Color = EditorGUILayout.ColorField(aset.Color, _colorWidthOption);
 			// -- 3 ---------------------------------------------------
 #if XI_GAME_TOOL_ADD_LAYERS_ICON
-			GUILayout.Box(layerView.Icon, ButtonStyle, IconWidthOption, IconHeightOption);
+			GUILayout.Box(setView.Icon, ButtonStyle, IconWidthOption, IconHeightOption);
 #endif
-
 			// -- 4 ---------------------------------------------------
-			GUILayout.Label(layer.Name, EditorStyles.largeLabel);
+			GUILayout.Label(aset.Name, EditorStyles.largeLabel);
 			// -- 5 ---------------------------------------------------
-			GUILayout.Label(layer.Quantity.ToString(), EditorStyles.boldLabel, _quantityWidthOption);
+			GUILayout.Label(aset.Quantity.ToString(), EditorStyles.boldLabel, _quantityWidthOption);
 		
 			GUILayout.EndHorizontal();
 		}
 
-		
-		public static void CountObjects()
-		{
-			if (GameTool.Layers.AllLayers == null) return;
-			var counts = GameLayersTools.CountObjectsInAllLayers();
-			SceneView.RepaintAll();
-		}
 	}
 }

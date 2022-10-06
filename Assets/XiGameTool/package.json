@@ -15,7 +15,13 @@
     "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm"
   },
   "category": "Debug",
-  "samples": [],
+  "samples": [
+    {
+      "displayName": "Art Primitives",
+      "description": "",
+      "path": "Examples~/Primitives_01) Getting Started"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/hww/XiGameTool.git#upm"
