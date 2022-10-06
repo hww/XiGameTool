@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/hww/XiGameTool/compare/v1.2.0...v1.2.1) (2022-10-06)
+
+
+### Bug Fixes
+
+* **icons:** The icons added ([b97539f](https://github.com/hww/XiGameTool/commit/b97539f986b47138b6fedc97f5cd265d8362d059))
+
 # [1.2.0](https://github.com/hww/XiGameTool/compare/v1.1.4...v1.2.0) (2022-10-06)
 
 
