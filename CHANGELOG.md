@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/hww/XiGameTool/compare/v1.2.1...v1.2.2) (2022-10-06)
+
+
+### Bug Fixes
+
+* **code:** Added support for multiple configs ([d8366a1](https://github.com/hww/XiGameTool/commit/d8366a1d4b4dea358e974b614b2a367028096dee))
+
 ## [1.2.1](https://github.com/hww/XiGameTool/compare/v1.2.0...v1.2.1) (2022-10-06)
 
 
