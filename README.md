@@ -37,7 +37,7 @@ You can also install via git url by adding this entry in your manifest.json
 ## TODO
 
 - [x] Basic functionality
-- [ ] Customizable and safe the objects tagging
+- [x] Configurabe and safe (no enum) the objects tagging
 - [ ] The performance optimization
 - [ ] Update documentation
 - [ ] Better redraw screen for Unity
