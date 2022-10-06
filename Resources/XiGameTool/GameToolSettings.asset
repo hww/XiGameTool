@@ -36,7 +36,7 @@ MonoBehaviour:
     Icon: {fileID: 2800000, guid: ecd4e5cea5759b84b8d8849afe481773, type: 3}
   - Name: Visibility
     Description: Custom occlusion culling
-    Icon: {fileID: 2800000, guid: 540950d07085a0e47a64b131d41667d2, type: 3}
+    Icon: {fileID: 2800000, guid: b360538571568fa4b8d519a672252855, type: 3}
   _gameSetsData:
   - Name: Default
     Description: The game objects not assigned to any set
@@ -65,7 +65,7 @@ MonoBehaviour:
     - BackgroundActors
   - Name: Combat
     Description: Melee system
-    Icon: {fileID: 2800000, guid: 21463a948cf3bc94883a2e08afdf4df5, type: 3}
+    Icon: {fileID: 2800000, guid: b759dafc6b80f6e41b2715da18e158c3, type: 3}
     Subcategories:
     - ActorSpawners
     - Regions
@@ -79,34 +79,34 @@ MonoBehaviour:
     - Splines
   - Name: Sound
     Description: Audion system control
-    Icon: {fileID: 2800000, guid: 8294cc1ecc1ce4d4bbd30646f0d87c56, type: 3}
+    Icon: {fileID: 2800000, guid: 76969eba47907684898c72f7eb1253cc, type: 3}
     Subcategories:
     - ActorSpawners
     - Regions
     - Splines
   - Name: Dialogue
     Description: Audion system control
-    Icon: {fileID: 2800000, guid: 8294cc1ecc1ce4d4bbd30646f0d87c56, type: 3}
+    Icon: {fileID: 2800000, guid: c761552f936d7c94da9828b521ae5ff9, type: 3}
     Subcategories:
     - ActorSpawners
     - Regions
     - Splines
   - Name: Rendering
     Description: Audion system control
-    Icon: {fileID: 2800000, guid: 8294cc1ecc1ce4d4bbd30646f0d87c56, type: 3}
+    Icon: {fileID: 2800000, guid: 2b2fee0c60b126847bc0a68d71cd9687, type: 3}
     Subcategories:
     - ActorSpawners
     - Regions
     - Splines
   - Name: Particles
     Description: Audion system control
-    Icon: {fileID: 2800000, guid: 8294cc1ecc1ce4d4bbd30646f0d87c56, type: 3}
+    Icon: {fileID: 2800000, guid: 9b6cad53d777a4b4ca3072bd98ff5a51, type: 3}
     Subcategories:
     - ActorSpawners
     - Regions
     - BackgroundActors
   - Name: Visibility
     Description: Custom occlusion culling
-    Icon: {fileID: 2800000, guid: 8294cc1ecc1ce4d4bbd30646f0d87c56, type: 3}
+    Icon: {fileID: 2800000, guid: b360538571568fa4b8d519a672252855, type: 3}
     Subcategories:
     - Visibility
