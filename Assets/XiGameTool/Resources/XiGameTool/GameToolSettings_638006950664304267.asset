@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35353396757de2a41b7aa0fd7ed337c2, type: 3}
+  m_Name: GameToolSettings_638006950664304267
+  m_EditorClassIdentifier: 
+  _gameTypes:
+  - Name: ActorSpawners
+    Description: The game object wich produce the actor or multiple actors
+    Icon: {fileID: 2800000, guid: ecd4e5cea5759b84b8d8849afe481773, type: 3}
+  - Name: Regions
+    Description: The regions with different laws and policies
+    Icon: {fileID: 2800000, guid: 2fcf1ba3d4e4ca948b1af092a0d7c677, type: 3}
+  - Name: NavShapes
+    Description: The navigation data
+    Icon: {fileID: 2800000, guid: 06f4dd8beca248c419d8a2070e725251, type: 3}
+  - Name: FeatureOverlays
+    Description: Any addition utilty objects for different subsystems
+    Icon: {fileID: 2800000, guid: b7a4105e96f4e3741ba91ccc3125f0d9, type: 3}
+  - Name: Traversal
+    Description: The game traversal objects
+    Icon: {fileID: 2800000, guid: 21463a948cf3bc94883a2e08afdf4df5, type: 3}
+  - Name: Splines
+    Description: The splines and other lines
+    Icon: {fileID: 2800000, guid: 51bdf8f5b68c8084cb330e76cc9c0be4, type: 3}
+  - Name: BackgroundActors
+    Description: The background actors (not in gameplay)
+    Icon: {fileID: 2800000, guid: ecd4e5cea5759b84b8d8849afe481773, type: 3}
+  - Name: Visibility
+    Description: Custom occlusion culling
+    Icon: {fileID: 2800000, guid: b360538571568fa4b8d519a672252855, type: 3}
+  _gameSetsData:
+  - Name: Default
+    Description: The game objects not assigned to any set
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    Icon: {fileID: 2800000, guid: 1eca11580c55ee84ea52960095e2cddb, type: 3}
+  - Name: WindZone
+    Description: There will be a wind in this zones
+    Color: {r: 1, g: 1, b: 1, a: 1}
+    Icon: {fileID: 2800000, guid: 1eca11580c55ee84ea52960095e2cddb, type: 3}
+  ErrorMessage: 
+  _gameCategoriesData:
+  - Name: Global
+    Description: The game objects not assigned to any category
+    Icon: {fileID: 2800000, guid: 07e4644666beb8145a1a763511ba2ba9, type: 3}
+    Subcategories:
+    - FeatureOverlays
+    - NavShapes
+    - Traversal
+  - Name: Gameplay
+    Description: The game objects not assigned to any category
+    Icon: {fileID: 2800000, guid: 96d541873c4922a43b924c91361c6be2, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - Splines
+    - BackgroundActors
+  - Name: Combat
+    Description: Melee system
+    Icon: {fileID: 2800000, guid: b759dafc6b80f6e41b2715da18e158c3, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - Splines
+  - Name: Camera
+    Description: Camera control
+    Icon: {fileID: 2800000, guid: 8294cc1ecc1ce4d4bbd30646f0d87c56, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - Splines
+  - Name: Sound
+    Description: Audion system control
+    Icon: {fileID: 2800000, guid: 76969eba47907684898c72f7eb1253cc, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - Splines
+  - Name: Dialogue
+    Description: Audion system control
+    Icon: {fileID: 2800000, guid: c761552f936d7c94da9828b521ae5ff9, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - Splines
+  - Name: Rendering
+    Description: Audion system control
+    Icon: {fileID: 2800000, guid: 2b2fee0c60b126847bc0a68d71cd9687, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - Splines
+  - Name: Particles
+    Description: Audion system control
+    Icon: {fileID: 2800000, guid: 9b6cad53d777a4b4ca3072bd98ff5a51, type: 3}
+    Subcategories:
+    - ActorSpawners
+    - Regions
+    - BackgroundActors
+  - Name: Visibility
+    Description: Custom occlusion culling
+    Icon: {fileID: 2800000, guid: b360538571568fa4b8d519a672252855, type: 3}
+    Subcategories:
+    - Visibility

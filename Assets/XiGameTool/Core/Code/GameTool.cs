@@ -35,11 +35,21 @@ namespace XiGameTool.Core
                     return;
                 }
             }
-
-            var sets = AssetDatabase.FindAssets($"t: {nameof(GameToolSettings)}").SingleOrDefault();
-            if (sets == default)
+            var pathList = AssetDatabase.FindAssets($"t: {nameof(GameToolSettings)}");
+            if (pathList.Length == 0)
                 throw new System.Exception($"There must be a single {nameof(Settings)}");
-            _settings = AssetDatabase.LoadAssetAtPath<GameToolSettings>(AssetDatabase.GUIDToAssetPath(sets));
+
+            _settings = null;
+            foreach (var path in pathList)
+            {
+                if (path == "Assets/Resources/XiGameTool/GameToolSettings.asset")
+                {
+                    _settings = AssetDatabase.LoadAssetAtPath<GameToolSettings>(AssetDatabase.GUIDToAssetPath(path));
+                    break;
+                }
+            }
+            if (_settings == null)
+                _settings = AssetDatabase.LoadAssetAtPath<GameToolSettings>(AssetDatabase.GUIDToAssetPath(pathList[0]));
             _displayUnised = true;
             LoadPreferences();
         }
