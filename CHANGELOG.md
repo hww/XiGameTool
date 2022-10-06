@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/hww/XiGameTool/compare/v1.1.4...v1.2.0) (2022-10-06)
+
+
+### Features
+
+* **refactoring:** Added the game side tool for configuration ([555e402](https://github.com/hww/XiGameTool/commit/555e4022506a777a56216790252ff6f05b9bac2e))
+
 ## [1.1.4](https://github.com/hww/XiGameTool/compare/v1.1.3...v1.1.4) (2022-10-04)
 
 
