@@ -144,3 +144,10 @@ public class ArtGroup
 In most cases there are no resons access to the layes settings. The layers managed directly by unity UnityEditor. 
 
 
+## The Settings
+
+There is GameToolSettings asset with configuation of the tool.
+
+![Setting Form](/Documentation/tool_settings.png)
+
+Alternatively, it is possible to place GameToolSettingsBehaviour on the Scene and point to one of other GameToolSettings assets. This is the way to have configuration per scene.
