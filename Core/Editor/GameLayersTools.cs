@@ -14,7 +14,7 @@ namespace XiGameTool.Core.Editor
         // ====================================================================
 
         /// <summary>
-        ///     Count objects on all layers 
+        ///     Quantity objects on all layers 
         /// </summary>
         /// <returns></returns>
         public static int[] CountObjectsInAllLayers()
@@ -26,7 +26,7 @@ namespace XiGameTool.Core.Editor
         }
 
         /// <summary>
-        ///     Count objects on all layers, but start this given roots
+        ///     Quantity objects on all layers, but start this given roots
         /// </summary>
         /// <param name="root"></param>
         /// <param name="counts"></param>

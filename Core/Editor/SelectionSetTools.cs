@@ -7,67 +7,55 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
-    public static class ArtSetsTools
+    public static class SelectionSetTools
     {
         // ====================================================================
         // Statistics
         // ====================================================================
 
         /// <summary>
-        ///     Count objects on all layers 
+        ///     Quantity objects on all layers 
         /// </summary>
         /// <returns></returns>
-        public static int[] CountInAllSets()
+        public static void CountInAllSets()
         {
-            var counts = new int[32];
-            var root = Resources.FindObjectsOfTypeAll<ArtPrimitive>();
-            CountInAllSets(root, counts);
-            return counts;
-        }
+            foreach (var t in GameTool.SelectionSets)
+                t.Quantity = 0;
 
-        /// <summary>
-        ///     Count objects on all layers, but start this given roots
-        /// </summary>
-        /// <param name="root"></param>
-        /// <param name="counts"></param>
-        /// <returns></returns>
-        private static int CountInAllSets(ArtPrimitive[] root, int[] counts)
-        {
-            var count = 0;
+            var root = Resources.FindObjectsOfTypeAll<GamePrimitive>();
             foreach (var t in root)
                 if (t.hideFlags == HideFlags.None)
-                    counts[(int)t.ArtSet]++;
-            return count;
+                    t.SelectionSet.Quantity++;
         }
 
         // ====================================================================
         // Selecting
         // ====================================================================
 
-        private static void SelectObjectsInSet(EArtSet artSet)
+        private static void SelectObjectsInSet(SelectionSet artSet)
         {
-            var root = Resources.FindObjectsOfTypeAll<ArtPrimitive>();
+            var root = Resources.FindObjectsOfTypeAll<GamePrimitive>();
             SelectObjectsInSet(root, artSet);
         }
 
-        private static void SelectObjectsInSet(ArtPrimitive[] root, EArtSet artSet)
+        private static void SelectObjectsInSet(GamePrimitive[] root, SelectionSet artSet)
         {
             var selected = new List<GameObject>();
             foreach (var t in root)
-                if (t.ArtSet == artSet && t.hideFlags == HideFlags.None)
+                if (t.SelectionSet == artSet && t.hideFlags == HideFlags.None)
                     selected.Add(t.gameObject);
             Selection.objects = selected.ToArray();
         }
 
-        public static void AssignArtSet(EArtSet artSet)
+        public static void AssignArtSet(SelectionSet artSet)
         {
             foreach (var o in Selection.objects)
             {
                 if (o is GameObject)
                 {
-                    var oo = (o as GameObject).GetComponents<ArtPrimitive>();
+                    var oo = (o as GameObject).GetComponents<GamePrimitive>();
                     foreach (var ooo in oo)
-                        ooo.ArtSet = artSet;
+                        ooo.SelectionSet = artSet;
                 }
             }
         }
