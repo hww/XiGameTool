@@ -146,8 +146,14 @@ In most cases there are no resons access to the layes settings. The layers manag
 
 ## The Settings
 
-There is GameToolSettings asset with configuation of the tool.
+There is GameToolSettings asset with configuation of the tool (see below).
 
 ![Setting Form](/Documentation/tool_settings.png)
+
+With this tool is possible to configure:
+
+- Game Object Types 
+- Game Categories and Subcategories
+- The selection sets
 
 Alternatively, it is possible to place GameToolSettingsBehaviour on the Scene and point to one of other GameToolSettings assets. This is the way to have configuration per scene.
