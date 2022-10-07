@@ -18,11 +18,11 @@ The scene editor in Unity 3D has enough features to work with small scenes. But 
 - **Manage the visibility of object categories** _For managing scene data by gtoups (_camera_, _gameplay_, _battle_ etc) and by categories (_spawner_, _traversal_, _splines_ etc)_.
 - **Manage the visibility of object set** _For managing the objects sets such as _scrpable, _target pointes_, etc_.
 
-It is easy to modify tool to have your custom lists of _categories_, _subcategories_ and _selection-sets_.
+It is easy to modify tool to have your custom lists of `categories`, `subcategories` and `selection-sets`.
 
 In addition to management, the panels display the object's statistics. As a result of the results of the use of this extension has shown high efficiency on large commercial projects.
 
-The diagram of classes below.
+The class-diagram below.
 
 ![XiGameToolDiagram](/Documentation/XiGameToolDiagram.drawio.png)
 
@@ -48,7 +48,7 @@ You can also install via git url by adding this entry in your manifest.json
 
 ## GamePrimitive Class
 
-The example of primitive class below. This class associate the game object with one of selection sets and categories.
+The example of primitive class below. This class associate the game object with one of `selection sets` and `categories`.
 
 ```C#
 public class GamePrimitive : MonoBehaviour
@@ -62,27 +62,29 @@ public class GamePrimitive : MonoBehaviour
 }
 ``` 
 
-The strings in the field will be associated (the references cached) with first access to a property. The editor will generate the drop down selection menu for each field. Or values could be set as thext with the inspector's developing mode.  
+The strings in the field will be associated (the references cached) with first access to a property. The editor will generate the drop down selection menu for each field. Or values could be set as text with inspector's developing mode.  
   
 ![Art Primitive Component](/Documentation/art-primitive.png)
 
-In case when the configuration will be changed, the string will keep previous config value. The drop down menu will indicate it. It is easy to make the validation or migrations tools. So the solution is very safe for large project and team.
+In case when the configuration will be changed, the string will keep previous config value. The drop down menu will indicate it. 
+
+:boom: It is easy to make the validation or migrations tools. So the solution is very safe for large project and team.
 
 ## Game Categories Window
 
-To control the visibility and displaying statistics for categories and subcategories of the objects.
+To control the visibility and displaying statistics for `categories` and `subcategories` of the objects.
 
 ![Layers Window](/Documentation/categories_window.png)
 
 ## Unity Layers Window
 
-The pannel alow makes visible or invisible the Unity layers, also it can set a layer protected or not. Additionaly it allow to change layer's color. And finaly it displays a statistics per layer.
+Allows makes visible or invisible the Unity layers, also it can set a layer protected or not. Additionally it allow to change layer's color. And finally it displays a statistics per layer.
 
 ![Layers Window](/Documentation/layers_window_colors.png)
 
 ## Selection Sets Window
 
-The pannel alow makes visible or invisible the objet set. Additionaly it displays metrics per category.
+The panel allows to makes visible or invisible the objects in `selection-set`. Additionally, it displays metrics per category.
 
 ![Categories Window](/Documentation/object_sets.png)
 
@@ -102,7 +104,7 @@ void OnDrawGizmos()
 }
 ```
 
-For a physical colliders there is different way in the game tool.
+For a physical colliders (or other layer's depended things) there is different way in the game tool.
 
 ```C#
 BoxCollider _boxCollider;
@@ -122,7 +124,7 @@ void OnDrawGizmos()
 
 ## Per Project Settings
 
-There is GameToolSettings asset with configuation of the tool (see below).
+There is `GameToolSettings` asset with configuration of the tool (see below).
 
 ![Setting Form](/Documentation/tool_settings.png)
 
@@ -134,4 +136,4 @@ With this tool is possible to configure the next options:
 
 ## Per Scene Settings
 
-Alternatively, it is possible to place `GameToolSettingsBehaviour` on the Scene and point to one of other `GameToolSettings` assets. This is the way to have configuration per scene.
+Alternatively, it is possible to place `GameToolSettingsBehaviour` on the Scene and point to one of other `GameToolSettings` assets. 
