@@ -1,11 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="XiGameTool.Core.ArtPrimitive">
-    <Position X="6.25" Y="2" Width="1.5" />
+  <Class Name="XiGameTool.Core.Category" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAoAAAAQAAAAAAAAAAAAAgAAAAAAAAAAAAAAAEE=</HashCode>
-      <FileName>Assets\XiGameTool\Core\Code\ArtPrimitive.cs</FileName>
+      <HashCode>ABAAKAAAAAAhGAAFAAAAAAQAAAAAAACAAAAAhAEAAAA=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\Category.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="XiGameTool.Core.GameLayer" Collapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAKAAAAAAIFAABAAEgACQAAAAAAACIAAGAgAsAAAE=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\GameLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XiGameTool.Core.GamePrimitive">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAEgAAAAAAAAAUAAAAAAIgAAAgEAABQAAAoAAA=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\GamePrimitive.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XiGameTool.Core.SelectionSet" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAoEEAFAAAAACQAAAAAAACIAEAAoAsAAAE=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\SelectionSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XiGameTool.Core.Subcategory" Collapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAIAACAAAgFIAFAAEAACQAACAAAACAAAAAoAMAAAA=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\Subcategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="XiGameTool.GameSetData">
+    <Position X="5.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAAAAAgAEAAAA=</HashCode>
+      <FileName>Assets\XiGameTool\Core\Code\GameToolSettings.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

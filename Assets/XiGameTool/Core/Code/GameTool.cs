@@ -98,10 +98,9 @@ namespace XiGameTool.Core
 #if UNITY_EDITOR
                 if (_displayUnused != value)
                 {
-                    SavePreferences();
                     _displayUnused = value;
+                    SavePreferences();
                 }
-
 #else
 #endif
             }

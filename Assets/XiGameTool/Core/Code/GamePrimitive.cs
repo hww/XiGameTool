@@ -30,7 +30,7 @@ namespace XiGameTool.Core
         private Subcategory _subcategory;
         private SelectionSet _selectionSet;
 
-        // Get the art type of this primitive
+        // Get the type in this category
         public Subcategory Subcategory
         {
             get => _subcategory ??= GameTool.FindSubcategory(subcategoryName);
@@ -43,7 +43,7 @@ namespace XiGameTool.Core
             set { _selectionSet = value; selectionSetName = value.Name; }
         }
 
-        // Get category of this primitive
+        // Get layer of this primitive
         public GameLayer Layer
         {
             get => GameTool.Layers.Find(gameObject.layer);
@@ -56,6 +56,10 @@ namespace XiGameTool.Core
             Subcategory.Quantity++;
             SelectionSet.Quantity++;
             Layer.Quantity++;
+            var random = Random.Range(1, 453);
+            Subcategory.Quantity+= random;
+            SelectionSet.Quantity+= random;
+            Layer.Quantity+=random;
         }
 
         private void OnValidate()
