@@ -47,20 +47,14 @@ You can also install via git url by adding this entry in your manifest.json
 The example of ArtPrimitive class below. This class associate the game object with one of art groups and categories.
 
 ```C#
-public class ArtPrimitive : MonoBehaviour
+public class GamePrimitive : MonoBehaviour
 {
-    public EArtGroup artGroup;        // Select the art group of this object
-    public EArtCategory artCategory;  // Select the art category of this object
-
-    public ArtGroup GetArtGroup()
-    {
-        return ArtGroups.GetGroup(artGroup);
-    }
+    public string subcategoryName;            // Select the art group of this object
+    public string selectionSetName;           // Select the art category of this object
     
-    public ArtCategory GetArtCategory()
-    {
-        return ArtGroups.GetGroup(artGroup).GetCategory(artCategory);
-    }
+    public Subcategory Subcategory => ...     // Get the game-type in this category
+    public SelectionSet SelectionSet => ...   // Get selection-set for this primitive
+    public GameLayer Layer => ...             // Get the layer of this primitive
 }
 ``` 
  
@@ -78,71 +72,37 @@ The pannel alow makes visible or invisible the objet set. Additionaly it display
 
 ![Categories Window](/Documentation/object_sets.png)
 
-## Change Layer Names
-
-The enum value EGameLayer contains the names for all layers in your game.
-
-## Access to categories settings
-
-For each group static field in the GameGroups class.
+## Example of using
 
 ```C#
-public class ArtGroups
+void OnDrawGizmos()
 {
-      public static Group Camera;
-      public static Group Partiles;
-      public static Group Sounds;
-      public static Group Globals;
-      public static Group Rendering;
-      public static Group Gameplay;
-}
-```
-
-Each group has fields per each category.
-
-```C#
-public class ArtGroup
-{
-      public Category ActorsSpawners;
-      public Category Regions;
-      public Category Splines;
-      public Category FeatureOverlays;
-      public Category NavShapes;
-      public Category Traversal;
-}
-```
-
-Example of using
-
-```C#
-private void OnDrawGizmos()
-{
-    var category = GetArtCategory();
-    if (category.IsVisible)
+    if (SelectionSet.IsVisible && Subcategory.IsVisible)
     {
-        var lineColor = category.GetLineColor(gameObject.layer);
-        var fillColor = category.GetFillColor(gameObject.layer);
-        VarpGizmos.Cylinder3D(transform.position, transform.rotation, 1f, zoneRadius, GizmoDrawAxis.Y, fillColor, lineColor);
-        VarpGizmos.Label(transform.position, lineColor, LabelPivot.MIDDLE_CENTER, LabelAlignment.CENTER, name, 100);
+        Gizmos.color = SelectionSet.Color;
+        Gizmos.DrawWireSphere(transform.position, 1f);
+        UnityEditor.Handles.Label(transform.position, gameObject.name);
     }
 }
 ```
 
-The line and fill colors will be used from category or from layers panel, depends on checkbox "User Layer Colors"
-
-## Access to layer settings
-
-The ArtLayers class contains settings for layers
+The line and fill colors will be used from SelectionSet or from Layers panel. For a physical colliders (example below) the color will be.
 
 ```C#
-public class ArtGroup
+BoxCollider _boxCollider;
+BoxCollider BoxCollider => _boxCollider ??= GetComponent<BoxCollider>();
+
+void OnDrawGizmos()
 {
-      public static readonly ArtLayer[] Layers = new ArtLayer[32];
+    if (SelectionSet.IsVisible && Subcategory.IsVisible)
+    {
+        Gizmos.color = GameTool.Layers.GetColor(gameObject.layer);
+        Gizmos.DrawWireCube(transform.position, BoxCollider.size);
+        UnityEditor.Handles.Label(transform.position, gameObject.name);
+        Gizmos.DrawIcon(transform.position, "your gizmo icon");
+    }
 }
 ```
-
-In most cases there are no resons access to the layes settings. The layers managed directly by unity UnityEditor. 
-
 
 ## The Settings
 
