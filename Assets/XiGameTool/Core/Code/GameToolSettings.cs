@@ -68,7 +68,7 @@ namespace XiGameTool
 
         #region The Initialization
         [NaughtyAttributes.Button]
-        void ResetDoDefault()
+        void ResetToDefault()
         {
             var source = GameTool.FindDefaultAssetPath(true);
             if (source != null)
