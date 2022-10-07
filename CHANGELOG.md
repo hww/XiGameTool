@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/hww/XiGameTool/compare/v1.2.2...v1.2.3) (2022-10-07)
+
+
+### Bug Fixes
+
+* **code:** Default asset find function improved ([e67927c](https://github.com/hww/XiGameTool/commit/e67927ccd0bd7eb9c8f776ab4450e3d10c65f2fe))
+
 ## [1.2.2](https://github.com/hww/XiGameTool/compare/v1.2.1...v1.2.2) (2022-10-06)
 
 
