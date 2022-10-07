@@ -9,15 +9,14 @@ namespace XiArtManager.Examples
     public class TestCollider : GamePrimitive
     {
         BoxCollider boxCollider;
+        BoxCollider BoxCollider => boxCollider ??= GetComponent<BoxCollider>();
 
-        // Update is called once per frame
         void OnDrawGizmos()
         {
             if (SelectionSet.IsVisible && Subcategory.IsVisible)
             {
                 Gizmos.color = GameTool.Layers.GetColor(gameObject.layer);
-                boxCollider = (boxCollider == null) ? GetComponent<BoxCollider>() : boxCollider;
-                Gizmos.DrawWireCube(transform.position, boxCollider.size);
+                Gizmos.DrawWireCube(transform.position, BoxCollider.size);
                 UnityEditor.Handles.Label(transform.position, gameObject.name);
                 Gizmos.DrawIcon(transform.position, "../XiGameTool/Gizmos/cat_traversal");
             }

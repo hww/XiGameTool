@@ -27,10 +27,10 @@ namespace XiGameTool.Core.Editor
 		private Vector2 _scrollPos;
 
 
-		[MenuItem("Xi/Window/Art Subcategories")]
+		[MenuItem("Xi/Window/Game Categories")]
 		public static void ShowWindow ()
 		{
-			GetWindow<CategoriesWindow>("XiGameTool: Subcategories");
+			GetWindow<CategoriesWindow>("XiGameTool: Categories");
 		}
 
 		void OnEnable()
