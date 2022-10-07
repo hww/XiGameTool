@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using XiGameTool.Core;
 
 namespace XiGameTool
@@ -31,6 +32,7 @@ namespace XiGameTool
             OnValidate_GameSets();
             OnValidate_GameCategories();
         }
+
         private void OnValidate()
         {
             ErrorMessage = string.Empty;
@@ -38,6 +40,8 @@ namespace XiGameTool
             OnValidate_GameSets();
             OnValidate_GameCategories();
         }
+
+        // The method will guaranty as minimum one default entry
         void Reset()
         {
             Reset_GameTypes();
@@ -45,6 +49,8 @@ namespace XiGameTool
             Reset_GameCategories();
         }
 
+        // Called one before count the objects of scene
+        // Then will be incremented each counter again
         public void ClearCounters()
         {
             foreach (var cat in Categories)
@@ -60,13 +66,19 @@ namespace XiGameTool
                 lay.Quantity = 0;
         }
 
-        #region GameTypes
+        #region The Initialization
         [NaughtyAttributes.Button]
-        void SaveAsset()
+        void ResetDoDefault()
         {
-            var path1 = UnityEditor.AssetDatabase.GetAssetPath(this);
-            var path2 = path1.Replace(name, $"{name}_{System.DateTime.Now.Ticks}");
-            UnityEditor.AssetDatabase.CopyAsset(path1, path2);
+            var source = GameTool.FindDefaultAssetPath(true);
+            if (source != null)
+            {
+                _gameTypes = source._gameTypes;
+                _selectionSetsData = source._selectionSetsData;
+                _gameCategoriesData = source._gameCategoriesData;
+                return;
+            }
+            Debug.LogError($"Can't find default asset template  anywere", this);
         }
         #endregion
 
@@ -129,19 +141,19 @@ namespace XiGameTool
         /** The Game Sets **/
 
         #region GameSets
-
+        [FormerlySerializedAs("_gameSetsData")]
         [ValidateInput("IsUniqueGameSetName", "Expects to have unique names")]
         [SerializeField]
-        private List<GameSetData> _gameSetsData = new List<GameSetData>();
+        private List<GameSetData> _selectionSetsData = new List<GameSetData>();
 
-        private List<SelectionSet> _gameSets = new List<SelectionSet>();
+        private List<SelectionSet> _selectionSets = new List<SelectionSet>();
         public IReadOnlyList<SelectionSet> SelectionSets
         {
             get
             {
-                if (_gameSets == null || _gameSets.Count == 0)
-                    _gameSets = _gameSetsData.Select(o => new SelectionSet(o.Name, o.Color, o.Icon, o.Description)).ToList();
-                return _gameSets;
+                if (_selectionSets == null || _selectionSets.Count == 0)
+                    _selectionSets = _selectionSetsData.Select(o => new SelectionSet(o.Name, o.Color, o.Icon, o.Description)).ToList();
+                return _selectionSets;
             }
         }
 
@@ -160,28 +172,28 @@ namespace XiGameTool
 #if UNITY_EDITOR
         private bool IsUniqueGameSetName()
         {
-            return (_gameSetsData.Count == _gameSetsData.Select(o => o.Name).Distinct().Count());
+            return (_selectionSetsData.Count == _selectionSetsData.Select(o => o.Name).Distinct().Count());
         }
 
         private void OnValidate_GameSets()
         {
-            _gameSets = null; /* Force Reinit */
+            _selectionSets = null; /* Force Reinit */
             Reset_GameSets();
-            for (int i = 0; i < _gameSetsData.Count; i++)
+            for (int i = 0; i < _selectionSetsData.Count; i++)
             {
-                var gameSet = _gameSetsData[i];
+                var gameSet = _selectionSetsData[i];
                 if (gameSet.Name == null)
                     gameSet.Name = $"SelectionSet {i}";
-                _gameSetsData[i] = gameSet;
+                _selectionSetsData[i] = gameSet;
             }
             if (!IsUniqueGameSetName())
                 Debug.LogError($"Duplicate GameType Names in the asset '{name}'", this);
         }
         private void Reset_GameSets()
         {
-            if (_gameSetsData.Count == 0)
+            if (_selectionSetsData.Count == 0)
             {
-                _gameSetsData.Add(new GameSetData()
+                _selectionSetsData.Add(new GameSetData()
                 {
                     Name = _defaultGameSetName,
                     Color = Color.white,
@@ -330,6 +342,7 @@ namespace XiGameTool
         public Color Color;
         public Texture Icon;
     }
+
     [System.Serializable]
     public struct GameCategoryData
     {
@@ -337,13 +350,12 @@ namespace XiGameTool
         public string Description;
         public Texture Icon;
         public List<string> Subcategories;
+
 #if UNITY_EDITOR
         public bool IsUniqueSubcategoriesName()
         {
             return (Subcategories.Count == Subcategories.Select(o => o).Distinct().Count());
         }
-
-  
 
         public bool VerifyValidNames(List<GameTypeData> types, out string message)
         {
