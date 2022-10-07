@@ -22,6 +22,10 @@ It is easy to modify tool to have your custom lists of _levels_, _categories_, _
 
 In addition to management, the panels display the object's statistics. As a result of the results of the use of this extension has shown high efficiency on large commercial projects.
 
+The diagram of classes below.
+
+![XiGameToolDiagram](/Documentation/XiGameToolDiagram.drawio.png)
+
 ## Install
 
 The package is available on the openupm registry. You can install it via openupm-cli.
