@@ -42,7 +42,7 @@ You can also install via git url by adding this entry in your manifest.json
 - [ ] Update documentation
 - [ ] Better redraw screen for Unity
 
-## ArtPrimitive Class
+## GamePrimitive Class
 
 The example of ArtPrimitive class below. This class associate the game object with one of art groups and categories.
 
@@ -59,6 +59,12 @@ public class GamePrimitive : MonoBehaviour
 ``` 
  
 ![Art Primitive Component](/Documentation/art-primitive.png)
+
+## Game Categories Window
+
+To control categories and subcategories of the objects.
+
+![Layers Window](/Documentation/categories_window.png)
 
 ## Unity Layers Visibility and Color
 
