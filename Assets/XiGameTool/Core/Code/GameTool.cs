@@ -22,6 +22,7 @@ namespace XiGameTool.Core
         /// </summary>
         static GameTool()
         {
+            _settings = null;
             var setsBehaviour = GameObject.FindObjectOfType<GameToolSettingsBehaviour>();
             if (setsBehaviour != null)
             {
@@ -32,48 +33,73 @@ namespace XiGameTool.Core
                 else
                 {
                     _settings = setsBehaviour.settings;
-                    return;
-                }
-            }
-            var pathList = AssetDatabase.FindAssets($"t: {nameof(GameToolSettings)}");
-            if (pathList.Length == 0)
-                throw new System.Exception($"There must be a single {nameof(Settings)}");
-
-            _settings = null;
-            foreach (var path in pathList)
-            {
-                if (path == "Assets/Resources/XiGameTool/GameToolSettings.asset")
-                {
-                    _settings = AssetDatabase.LoadAssetAtPath<GameToolSettings>(AssetDatabase.GUIDToAssetPath(path));
-                    break;
                 }
             }
             if (_settings == null)
-                _settings = AssetDatabase.LoadAssetAtPath<GameToolSettings>(AssetDatabase.GUIDToAssetPath(pathList[0]));
-            _displayUnised = true;
+                _settings = FindDefaultAssetPath(false);
+            _displayUnused = true;
             LoadPreferences();
         }
 
+        public static GameToolSettings FindDefaultAssetPath(bool packagePriority)
+        {
+            const string defaultAssetPath1 = "Assets/XiGameTool/Resources/XiGameTool/GameToolSettings.asset";
+            const string defaultAssetPath2 = "Packages/com.hww.xigametool/Resources/XiGameTool/GameToolSettings.asset";
+            const string defaultAssetPath3 = "/Resources/XiGameTool/GameToolSettings.asset";
+            const string defaultAssetPath4 = "GameToolSettings.asset";
+
+            var idList = AssetDatabase.FindAssets($"t: {nameof(GameToolSettings)}");
+            if (idList.Length == 0)
+                throw new System.Exception($"There must be a single {nameof(Settings)}");
+            var pathList = idList.Select(id => UnityEditor.AssetDatabase.GUIDToAssetPath(id)).ToList();
+
+            if (packagePriority)
+            {
+                return TryReadDefaultAsset(defaultAssetPath2, pathList) ??
+                    TryReadDefaultAsset(defaultAssetPath1, pathList) ??
+                    TryReadDefaultAsset(defaultAssetPath3, pathList) ??
+                    TryReadDefaultAsset(defaultAssetPath4, pathList);
+            }
+            else
+            {
+                return TryReadDefaultAsset(defaultAssetPath1, pathList) ??
+                    TryReadDefaultAsset(defaultAssetPath2, pathList) ??
+                    TryReadDefaultAsset(defaultAssetPath3, pathList) ??
+                    TryReadDefaultAsset(defaultAssetPath4, pathList);
+            }
+        }
+
+        // Read the asset at the path if it is exists or return null
+        // TODO Probably could be done by single Unity method (no time to find)
+        private static GameToolSettings TryReadDefaultAsset(string loadPath, List<string> existinPathList)
+        { 
+            foreach (var path in existinPathList)
+            {
+                if (path.Contains(loadPath))
+                    return UnityEditor.AssetDatabase.LoadAssetAtPath<GameToolSettings>(path);
+            }
+            return null;
+        }
         #endregion
 
 
         /** Show optional lines */
 
-        private static bool _displayUnised;
+        private static bool _displayUnused;
 
         public static bool DisplayUnused
         {
             get
             {
-                return _displayUnised;
+                return _displayUnused;
             }
             set
             {
 #if UNITY_EDITOR
-                if (_displayUnised != value)
+                if (_displayUnused != value)
                 {
                     SavePreferences();
-                    _displayUnised = value;
+                    _displayUnused = value;
                 }
 
 #else
@@ -83,12 +109,12 @@ namespace XiGameTool.Core
 
         private static void SavePreferences()
         {
-            EditorPrefs.SetBool("GameToolDisplayUnused", _displayUnised);
+            EditorPrefs.SetBool("GameToolDisplayUnused", _displayUnused);
         }
 
         private static void LoadPreferences()
         {
-            _displayUnised = EditorPrefs.GetBool("GameToolDisplayUnused", true);
+            _displayUnused = EditorPrefs.GetBool("GameToolDisplayUnused", true);
         }
 
 
