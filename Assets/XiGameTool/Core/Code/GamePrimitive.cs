@@ -56,10 +56,6 @@ namespace XiGameTool.Core
             Subcategory.Quantity++;
             SelectionSet.Quantity++;
             Layer.Quantity++;
-            var random = Random.Range(1, 453);
-            Subcategory.Quantity+= random;
-            SelectionSet.Quantity+= random;
-            Layer.Quantity+=random;
         }
 
         private void OnValidate()

@@ -1,6 +1,5 @@
 /* Copyright(c) 2021 Valeriya Pudova(hww.github.io) read more at the license file  */
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
