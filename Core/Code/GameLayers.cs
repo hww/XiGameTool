@@ -90,7 +90,7 @@ namespace XiGameTool.Core
             // <returns></returns>
             public static GameLayer Find(int id)
             {
-                return s_AllLayers[id];
+                return AllLayers[id];
             }
 
             /// <summary>
@@ -100,17 +100,17 @@ namespace XiGameTool.Core
             /// <returns></returns>
             public static GameLayer GetLayer(int layerNum)
             {
-                return s_AllLayers[layerNum];
+                return AllLayers[layerNum];
             }
 
             public static Color GetColor(int layerNum)
             {
-                return s_AllLayers[layerNum].Color;
+                return AllLayers[layerNum].Color;
             }
 
             public static void SetColor(int layerNum, Color color)
             {
-                s_AllLayers[layerNum].Color = color;
+                AllLayers[layerNum].Color = color;
             }
         }
     }
