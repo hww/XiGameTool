@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/hww/XiGameTool/compare/v1.2.4...v1.2.5) (2022-10-10)
+
+
+### Bug Fixes
+
+* **code:** Update dependencies ([dce46ce](https://github.com/hww/XiGameTool/commit/dce46cee4c60dd1df60b2cbeff6efca7a3459475))
+
 ## [1.2.4](https://github.com/hww/XiGameTool/compare/v1.2.3...v1.2.4) (2022-10-07)
 
 
