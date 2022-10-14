@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
+    /// <summary>Form for viewing the game layers.</summary>
 	public class GameLayersWindow : EditorWindow {
 
 		[MenuItem("Xi/Window/Unity Layers")]
@@ -14,6 +15,7 @@ namespace XiGameTool.Core.Editor
 			GetWindow<GameLayersWindow>("XiGameTool: Unity Layers");
 		}
 
+        /// <summary>Called when the object becomes enabled and active.</summary>
 		void OnEnable()
 		{
 			EditorApplication.hierarchyChanged -= GameTool.CountAllObjects;
@@ -46,6 +48,7 @@ namespace XiGameTool.Core.Editor
 		private GUIStyle _buttonStyle;
 		private Vector2 _scrollPos;
 		
+        /// <summary>Called for rendering and handling GUI events.</summary>
 		void OnGUI ()
 		{
 			// -- render tool bar --
@@ -77,13 +80,18 @@ namespace XiGameTool.Core.Editor
 			}
 			EditorGUILayout.EndScrollView();
 		}
+        /// <summary>Draw a space separator.</summary>
 		private void DrawSeparator()
 		{
 			GUILayout.Box(string.Empty, GUILayout.Height(2f), GUILayout.ExpandWidth(true));
 		}
-		/// <summary>
-		/// Render single line
-		/// </summary>
+
+        ///--------------------------------------------------------------------
+        /// <summary>Render single line.</summary>
+        ///
+        /// <param name="layer">The layer.</param>
+        ///--------------------------------------------------------------------
+
 		private void RenderLayer(GameLayer layer)
 		{
 			GUILayout.BeginHorizontal();
@@ -110,6 +118,7 @@ namespace XiGameTool.Core.Editor
 		}
 
 		
+        /// <summary>Count objects.</summary>
 		public static void CountObjects()
 		{
 			if (GameTool.Layers.AllLayers == null) return;

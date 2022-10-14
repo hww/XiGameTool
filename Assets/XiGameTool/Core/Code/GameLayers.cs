@@ -11,11 +11,21 @@ namespace XiGameTool.Core
 {
     public static partial class GameTool
     {
+        /// <summary>A game layers.</summary>
         public static class Layers
         {
 
+            /// <summary>List of names of the layers.</summary>
             private static string[] s_LayerNames;
+            /// <summary>All layers.</summary>
             private static GameLayer[] s_AllLayers;
+
+            ///----------------------------------------------------------------
+            /// <summary>Gets layer names.</summary>
+            ///
+            /// <returns>An array of string.</returns>
+            ///----------------------------------------------------------------
+
             public static string[] GetLayerNames()
             {
 
@@ -30,6 +40,13 @@ namespace XiGameTool.Core
                 }
                 return s_LayerNames;
             }
+
+            ///----------------------------------------------------------------
+            /// <summary>Sets layer names.</summary>
+            ///
+            /// <param name="names">The names.</param>
+            ///----------------------------------------------------------------
+
             public static void SetLayerNames(string[] names)
             {
                 UnityEngine.Debug.Assert(names.Length == 32);
@@ -39,6 +56,7 @@ namespace XiGameTool.Core
                     s_AllLayers[i] = new GameLayer(i, names[i], Color.white);
             }
 
+            /// <summary>Executes the 'set layer names' action.</summary>
             private static void OnSetLayerNames()
             {
                 // Make a name for not named
@@ -48,7 +66,12 @@ namespace XiGameTool.Core
                         s_LayerNames[i] = $"Layer {i}";
                 }
             }
-     
+
+            ///----------------------------------------------------------------
+            /// <summary>Gets all layers.</summary>
+            ///
+            /// <value>all layers.</value>
+            ///----------------------------------------------------------------
 
             public static GameLayer[] AllLayers
             {
@@ -66,11 +89,15 @@ namespace XiGameTool.Core
                     return s_AllLayers;
                 }
             }
-            // <summary>
-            //     Get art layer by tag
-            // </summary>
-            // <param name="layerNum"></param>
-            // <returns></returns>
+
+            ///----------------------------------------------------------------
+            /// <summary>Get art layer by tag.</summary>
+            ///
+            /// <param name="name">The name.</param>
+            ///
+            /// <returns>A GameLayer.</returns>
+            ///----------------------------------------------------------------
+
             public static GameLayer Find(string name)
             {
                 var names = GetLayerNames();
@@ -83,30 +110,38 @@ namespace XiGameTool.Core
                 return null;
             }
 
-            // <summary>
-            //     Get art layer by tag
-            // </summary>
-            // <param name="layerNum"></param>
-            // <returns></returns>
+            ///----------------------------------------------------------------
+            /// <summary>Get art layer by tag.</summary>
+            ///
+            /// <param name="id">The identifier.</param>
+            ///
+            /// <returns>A GameLayer.</returns>
+            ///----------------------------------------------------------------
+
             public static GameLayer Find(int id)
             {
                 return AllLayers[id];
             }
 
-            /// <summary>
-            ///     Get art layer by integer index (same at is in Unity)
-            /// </summary>
-            /// <param name="layerNum"></param>
-            /// <returns></returns>
-            public static GameLayer GetLayer(int layerNum)
-            {
-                return AllLayers[layerNum];
-            }
+            ///----------------------------------------------------------------
+            /// <summary>Gets a color.</summary>
+            ///
+            /// <param name="layerNum">The layer number.</param>
+            ///
+            /// <returns>The color.</returns>
+            ///----------------------------------------------------------------
 
             public static Color GetColor(int layerNum)
             {
                 return AllLayers[layerNum].Color;
             }
+
+            ///----------------------------------------------------------------
+            /// <summary>Sets a color.</summary>
+            ///
+            /// <param name="layerNum">The layer number.</param>
+            /// <param name="color">   The color.</param>
+            ///----------------------------------------------------------------
 
             public static void SetColor(int layerNum, Color color)
             {

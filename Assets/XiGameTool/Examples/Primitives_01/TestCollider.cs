@@ -8,12 +8,20 @@ namespace XiArtManager.Examples
     [RequireComponent(typeof(BoxCollider))]
     public class TestCollider : GamePrimitive
     {
+        /// <summary>The box collider.</summary>
         public BoxCollider boxCollider;
+
+        ///--------------------------------------------------------------------
+        /// <summary>Called when the script is loaded or a value is changed in
+        /// the inspector (Called in the editor only)</summary>
+        ///--------------------------------------------------------------------
 
         private void OnValidate()
         {
             boxCollider = GetComponent<BoxCollider>();
         }
+
+        /// <summary>Draws gizmos that are also pickable and always drawn.</summary>
         void OnDrawGizmos()
         {
             if (SelectionSet.IsVisible && Subcategory.IsVisible)
