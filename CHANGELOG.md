@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/hww/XiGameTool/compare/v1.2.5...v1.2.6) (2022-10-14)
+
+
+### Bug Fixes
+
+* **code:** Remove unused methods ([8a39475](https://github.com/hww/XiGameTool/commit/8a39475c6b054348df3733b4fc40eac2447e74b1))
+
 ## [1.2.5](https://github.com/hww/XiGameTool/compare/v1.2.4...v1.2.5) (2022-10-10)
 
 
