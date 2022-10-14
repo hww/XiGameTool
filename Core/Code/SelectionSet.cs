@@ -7,9 +7,7 @@ using UnityEngine;
 
 namespace XiGameTool.Core
 {
-    /// <summary>
-    ///     Representation for single layer
-    /// </summary>
+    /// <summary>Representation for single layer.</summary>
     public class SelectionSet
     {
         private string _name;
@@ -23,6 +21,15 @@ namespace XiGameTool.Core
         private string _preferencesFormat;
         private int _quantity;
 
+        ///--------------------------------------------------------------------
+        /// <summary>Constructor.</summary>
+        ///
+        /// <param name="name">      The name.</param>
+        /// <param name="color">     Get color of this layer.</param>
+        /// <param name="icon">      The icon.</param>
+        /// <param name="descriptin">The descriptin.</param>
+        ///--------------------------------------------------------------------
+
         public SelectionSet(string name, Color color, Texture icon, string descriptin)
         {
             _name = name;
@@ -32,17 +39,37 @@ namespace XiGameTool.Core
             _icon = icon;
             _description = descriptin;
             _quantity = 0;
-            OnChangeName();
+            OnChangeName(false); 
+            LoadPreferences();
         }
 
-        public Texture Icon => _icon ?? Texture2D.redTexture;
+        public Texture Icon => _icon != null ? _icon : Texture2D.redTexture;
+
+        ///--------------------------------------------------------------------
+        /// <summary>Gets or sets the quantity.</summary>
+        ///
+        /// <value>The quantity.</value>
+        ///--------------------------------------------------------------------
 
         public int Quantity
         {
             get => _quantity;
             set => _quantity = value;
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Gets the description.</summary>
+        ///
+        /// <value>The description.</value>
+        ///--------------------------------------------------------------------
+
         public string Description => _description;
+
+        ///--------------------------------------------------------------------
+        /// <summary>Gets or sets the name.</summary>
+        ///
+        /// <value>The name.</value>
+        ///--------------------------------------------------------------------
 
         public string Name
         {
@@ -51,21 +78,26 @@ namespace XiGameTool.Core
                 if (_name != value)
                 {
                     _name = value;
-                    OnChangeName();
+                    OnChangeName(true);
                 }
             }
         }
-        private void OnChangeName()
+        /// <summary>Executes the 'change name' action.</summary>
+        private void OnChangeName(bool rename)
         {
-            if (_preferencesFormat != null)
+            if (rename && _preferencesFormat != null)
                 ClearPreferences();
             _preferencesFormat = $"GameTool.SelectionSet.WindowColor_{_name}_{{0}}";
-            SavePreferences();
+            if (rename)
+                SavePreferences();
         }
 
-        /// <summary>
-        ///     Is this layer visible
-        /// </summary>
+        ///--------------------------------------------------------------------
+        /// <summary>Is this layer visible.</summary>
+        ///
+        /// <value>True if this object is visible, false if not.</value>
+        ///--------------------------------------------------------------------
+
         public bool IsVisible
         {
             get => _isVisible;
@@ -79,12 +111,12 @@ namespace XiGameTool.Core
             }
         }
 
+        ///--------------------------------------------------------------------
+        /// <summary>Get color of this layer.</summary>
+        ///
+        /// <value>The color.</value>
+        ///--------------------------------------------------------------------
 
-
-        
-        /// <summary>
-        ///     Get color of this layer
-        /// </summary>
         public Color Color
         {
             get => _color;
@@ -98,11 +130,15 @@ namespace XiGameTool.Core
             }
         }
 
-        /// <summary>
-        ///     Get fill color of this layer. Usually same as color but more transparent
-        /// </summary>
+        ///--------------------------------------------------------------------
+        /// <summary>Get fill color of this layer. Usually same as color but more transparent.</summary>
+        ///
+        /// <value>The color of the fill.</value>
+        ///--------------------------------------------------------------------
+
         public Color FillColor => new Color(_color.r, _color.g, _color.b, 0.1f);
 
+        /// <summary>Saves the preferences.</summary>
         private void SavePreferences()
         {
 #if UNITY_EDITOR
@@ -113,6 +149,7 @@ namespace XiGameTool.Core
 #endif
         }
 
+        /// <summary>Loads the preferences.</summary>
         private void LoadPreferences()
         {
 #if UNITY_EDITOR
@@ -121,9 +158,9 @@ namespace XiGameTool.Core
             var g = EditorPrefs.GetFloat(string.Format(_preferencesFormat, "G"), _defaultColor.g);
             var b = EditorPrefs.GetFloat(string.Format(_preferencesFormat, "B"), _defaultColor.b);
             _color = new Color(r, g, b);
-#else
 #endif
         }
+        /// <summary>Clears the preferences.</summary>
         private void ClearPreferences()
         {
 #if UNITY_EDITOR
@@ -131,8 +168,6 @@ namespace XiGameTool.Core
             EditorPrefs.DeleteKey(string.Format(_preferencesFormat, "R"));
             EditorPrefs.DeleteKey(string.Format(_preferencesFormat, "G"));
             EditorPrefs.DeleteKey(string.Format(_preferencesFormat, "B"));
-#else
-
 #endif
         }
     }

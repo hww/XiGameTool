@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 namespace XiGameTool.Core.Editor
 {
+    /// <summary>Form for viewing the categories.</summary>
 	public class CategoriesWindow : EditorWindow {
 
 
@@ -27,12 +29,14 @@ namespace XiGameTool.Core.Editor
 		private Vector2 _scrollPos;
 
 
+        /// <summary>Shows the window.</summary>
 		[MenuItem("Xi/Window/Game Categories")]
 		public static void ShowWindow ()
 		{
 			GetWindow<CategoriesWindow>("XiGameTool: Categories");
 		}
 
+        /// <summary>Called when the object becomes enabled and active.</summary>
 		void OnEnable()
 		{
 			EditorApplication.hierarchyChanged -= GameTool.CountAllObjects;
@@ -45,14 +49,18 @@ namespace XiGameTool.Core.Editor
 			GameTool.CountAllObjects();
 		}
 
-		
+        ///--------------------------------------------------------------------
+        /// <summary>Called when the behaviour becomes disabled or
+        /// inactive.</summary>
+        ///--------------------------------------------------------------------
+
 		private void OnDisable()
 		{
 
 		}
 
 
-
+        /// <summary>Called for rendering and handling GUI events.</summary>
 		void OnGUI ()
 		{
 			// -- render tool bar --
@@ -71,16 +79,18 @@ namespace XiGameTool.Core.Editor
 			EditorGUILayout.EndScrollView();
 		}
 
+        /// <summary>Draw a horizontal space-separator.</summary>
 		private void DrawSeparator()
 		{
 			GUILayout.Box(string.Empty, GUILayout.Height(2f), GUILayout.ExpandWidth(true));
 		}
 
+        ///--------------------------------------------------------------------
+        /// <summary>Settings for single group.</summary>
+        ///
+        /// <param name="category">The category.</param>
+        ///--------------------------------------------------------------------
 
-
-		/// <summary>
-		/// Settings for single group
-		/// </summary>
 		private void RenderCategory(Category category)
 		{
 
@@ -112,11 +122,13 @@ namespace XiGameTool.Core.Editor
 		
 			GUILayout.Box("", new GUILayoutOption[]{GUILayout.ExpandWidth(true), GUILayout.Height(1)});
 		}
-	
 
-		/// <summary>
-		/// Render single category
-		/// </summary>
+        ///--------------------------------------------------------------------
+        /// <summary>Render single category.</summary>
+        ///
+        /// <param name="type">The type.</param>
+        ///--------------------------------------------------------------------
+
 		private void RenderType(Subcategory type)
 		{
 			GUILayout.BeginHorizontal();

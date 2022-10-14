@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
+    /// <summary>Form for viewing the selection set.</summary>
 	public class SelectionSetWindow : EditorWindow {
 
 		[MenuItem("Xi/Window/Selection Sets")]
@@ -14,6 +15,7 @@ namespace XiGameTool.Core.Editor
 			GetWindow<SelectionSetWindow>("XiGameTool: Selection Sets");
 		}
 
+        /// <summary>Called when the object becomes enabled and active.</summary>
 		void OnEnable()
 		{
 			EditorApplication.hierarchyChanged -= GameTool.CountAllObjects;
@@ -53,6 +55,7 @@ namespace XiGameTool.Core.Editor
 		private GUIStyle _buttonStyle;
 		private Vector2 _scrollPos;
 		
+        /// <summary>Called for rendering and handling GUI events.</summary>
 		void OnGUI ()
 		{
 			// -- render tool bar --
@@ -74,13 +77,18 @@ namespace XiGameTool.Core.Editor
 			}
 			EditorGUILayout.EndScrollView();
 		}
+        /// <summary>Draw a space separator.</summary>
 		private void DrawSeparator()
 		{
 			GUILayout.Box(string.Empty, GUILayout.Height(2f), GUILayout.ExpandWidth(true));
 		}
-		/// <summary>
-		/// Render single line
-		/// </summary>
+
+        ///--------------------------------------------------------------------
+        /// <summary>Render single line.</summary>
+        ///
+        /// <param name="aset">The aset.</param>
+        ///--------------------------------------------------------------------
+
 		private void RenderSet(SelectionSet aset)
 		{
 	

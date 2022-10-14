@@ -7,16 +7,15 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
+    /// <summary>A selection set tools.</summary>
     public static class SelectionSetTools
     {
-        // ====================================================================
-        // Statistics
-        // ====================================================================
+        ///--------------------------------------------------------------------
+        /// <summary>Quantity objects on all layers.</summary>
+        ///
+        /// ### <returns>.</returns>
+        ///--------------------------------------------------------------------
 
-        /// <summary>
-        ///     Quantity objects on all layers 
-        /// </summary>
-        /// <returns></returns>
         public static void CountInAllSets()
         {
             foreach (var t in GameTool.SelectionSets)
@@ -28,15 +27,24 @@ namespace XiGameTool.Core.Editor
                     t.SelectionSet.Quantity++;
         }
 
-        // ====================================================================
-        // Selecting
-        // ====================================================================
+        ///--------------------------------------------------------------------
+        /// <summary>Select objects in set.</summary>
+        ///
+        /// <param name="artSet">Set the art belongs to.</param>
+        ///--------------------------------------------------------------------
 
         private static void SelectObjectsInSet(SelectionSet artSet)
         {
             var root = Resources.FindObjectsOfTypeAll<GamePrimitive>();
             SelectObjectsInSet(root, artSet);
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Select objects in set.</summary>
+        ///
+        /// <param name="root">  The root.</param>
+        /// <param name="artSet">Set the art belongs to.</param>
+        ///--------------------------------------------------------------------
 
         private static void SelectObjectsInSet(GamePrimitive[] root, SelectionSet artSet)
         {
@@ -46,6 +54,12 @@ namespace XiGameTool.Core.Editor
                     selected.Add(t.gameObject);
             Selection.objects = selected.ToArray();
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Assign art set.</summary>
+        ///
+        /// <param name="artSet">Set the art belongs to.</param>
+        ///--------------------------------------------------------------------
 
         public static void AssignArtSet(SelectionSet artSet)
         {
@@ -60,20 +74,5 @@ namespace XiGameTool.Core.Editor
             }
         }
 
-
-        private static void SelectObjectsByLayerMask(int layerMask)
-        {
-            var root = Resources.FindObjectsOfTypeAll<GameObject>();
-            SelectObjectsByLayerMask(root, layerMask);
-        }
-
-        private static void SelectObjectsByLayerMask(GameObject[] root, int layerMask)
-        {
-            var selected = new List<GameObject>();
-            foreach (var t in root)
-                if (t.hideFlags == HideFlags.None && ((1 << t.layer) & layerMask) > 0)
-                    selected.Add(t);
-            Selection.objects = selected.ToArray();
-        }
     }
 }

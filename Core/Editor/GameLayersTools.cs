@@ -7,16 +7,15 @@ using UnityEngine;
 
 namespace XiGameTool.Core.Editor
 {
+    /// <summary>A game layers tools.</summary>
     public static class GameLayersTools
     {
-        // ====================================================================
-        // Statistics
-        // ====================================================================
+        ///--------------------------------------------------------------------
+        /// <summary>Quantity objects on all layers.</summary>
+        ///
+        /// <returns>The total number of objects in all layers.</returns>
+        ///--------------------------------------------------------------------
 
-        /// <summary>
-        ///     Quantity objects on all layers 
-        /// </summary>
-        /// <returns></returns>
         public static int[] CountObjectsInAllLayers()
         {
             var counts = new int[32];
@@ -25,12 +24,16 @@ namespace XiGameTool.Core.Editor
             return counts;
         }
 
-        /// <summary>
-        ///     Quantity objects on all layers, but start this given roots
-        /// </summary>
-        /// <param name="root"></param>
-        /// <param name="counts"></param>
-        /// <returns></returns>
+        ///--------------------------------------------------------------------
+        /// <summary>Quantity objects on all layers, but start this given
+        /// roots.</summary>
+        ///
+        /// <param name="root">  The objects to count.</param>
+        /// <param name="counts">The counters.</param>
+        ///
+        /// <returns>The total number of objects in all layers.</returns>
+        ///--------------------------------------------------------------------
+
         private static int CountObjectsInAllLayers(GameObject[] root, int[] counts)
         {
             var count = 0;

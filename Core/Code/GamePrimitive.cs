@@ -6,49 +6,65 @@ using UnityEngine;
 
 namespace XiGameTool.Core
 {
-    /// <summary>
-    ///     This class allow to mark object as the one on art category
-    /// </summary>
+    /// <summary>This class allow to mark object as the one on art category.</summary>
     public class GamePrimitive : MonoBehaviour
     {
-        // Select the art group of this object
         [BoxGroup("Art Primitive")]
 #if UNITY_EDITOR
         [OnValueChanged(nameof(OnSubcategoryChanged))]
         [Dropdown(nameof(SubcategorySelector))]
 #endif
+        /// <summary>Name of the subcategory.</summary>
         public string subcategoryName;
 
-        // Select the art set
         [BoxGroup("Art Primitive")]
 #if UNITY_EDITOR
         [OnValueChanged(nameof(OnSelectionSetChanged))]
         [Dropdown(nameof(SelectionSetSelector))]
 #endif
+        /// <summary>Name of the selection set.</summary>
         public string selectionSetName;
-
+        /// <summary>The subcategory.</summary>
         private Subcategory _subcategory;
+        /// <summary>Set the selection belongs to.</summary>
         private SelectionSet _selectionSet;
 
-        // Get the type in this category
+        ///--------------------------------------------------------------------
+        /// <summary>Get the type in this category.</summary>
+        ///
+        /// <value>The subcategory.</value>
+        ///--------------------------------------------------------------------
+
         public Subcategory Subcategory
         {
             get => _subcategory ??= GameTool.FindSubcategory(subcategoryName);
             set { _subcategory = value; subcategoryName = value.FullName; }
         }
-        // Get selection set for this primitive
+
+        ///--------------------------------------------------------------------
+        /// <summary>Get selection set for this primitive.</summary>
+        ///
+        /// <value>The selection set.</value>
+        ///--------------------------------------------------------------------
+
         public SelectionSet SelectionSet
         {
             get => _selectionSet ??= GameTool.FindSelectionSet(selectionSetName);
             set { _selectionSet = value; selectionSetName = value.Name; }
         }
 
-        // Get layer of this primitive
+        ///--------------------------------------------------------------------
+        /// <summary>Get layer of this primitive.</summary>
+        ///
+        /// <value>The layer.</value>
+        ///--------------------------------------------------------------------
+
         public GameLayer Layer
         {
             get => GameTool.Layers.Find(gameObject.layer);
         }
 
+        /// <summary>Increment counters.</summary>
         public void IncrementCounters()
         {
             _subcategory = null;
@@ -58,6 +74,11 @@ namespace XiGameTool.Core
             Layer.Quantity++;
         }
 
+        ///--------------------------------------------------------------------
+        /// <summary>Called when the script is loaded or a value is changed in
+        /// the inspector (Called in the editor only)</summary>
+        ///--------------------------------------------------------------------
+
         private void OnValidate()
         {
             _selectionSet = null;
@@ -65,6 +86,7 @@ namespace XiGameTool.Core
         }
 
 #if UNITY_EDITOR
+        /// <summary>Executes the 'selection set changed' action.</summary>
         private void OnSelectionSetChanged()
         {
             if (selectionSetName == default)
@@ -77,6 +99,7 @@ namespace XiGameTool.Core
             }
         }
 
+        /// <summary>Executes the 'subcategory changed' action.</summary>
         private void OnSubcategoryChanged()
         {
             if (selectionSetName == default)
@@ -88,6 +111,15 @@ namespace XiGameTool.Core
                 _subcategory = GameTool.FindSubcategory(subcategoryName);
             }
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Selection set selector.</summary>
+        ///
+        /// <exception cref="Exception">    Thrown when an exception error
+        ///                                 condition occurs.</exception>
+        ///
+        /// <returns>A list of.</returns>
+        ///--------------------------------------------------------------------
 
         private DropdownList<string> SelectionSetSelector()
         {
@@ -114,6 +146,15 @@ namespace XiGameTool.Core
                 return list;
             }
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Subcategory selector.</summary>
+        ///
+        /// <exception cref="Exception">    Thrown when an exception error
+        ///                                 condition occurs.</exception>
+        ///
+        /// <returns>A list of.</returns>
+        ///--------------------------------------------------------------------
 
         private DropdownList<string> SubcategorySelector()
         {

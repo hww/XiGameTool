@@ -9,6 +9,7 @@ using XiGameTool.Core;
 
 namespace XiGameTool
 {
+    /// <summary>A game tool settings.</summary>
     [CreateAssetMenu(fileName = "GameToolSettings", menuName = "Xi/Settings/GameToolSettings")]
     public class GameToolSettings : ScriptableObject
     {
@@ -26,12 +27,18 @@ namespace XiGameTool
         static Texture DefaultGameSetIcon => _defaultGameSetIcon ??= Resources.Load<Texture>("XiGameTool/Images/ui_set");
         static Texture DefaultGameCategoryIcon => _defaultGameCategoryIcon ??= Resources.Load<Texture>("XiGameTool/Images/grp_env_ball");
 
+        /// <summary>Called when the object becomes enabled and active.</summary>
         private void OnEnable()
         {
             OnValidate_GameTypes();
             OnValidate_GameSets();
             OnValidate_GameCategories();
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Called when the script is loaded or a value is changed in
+        /// the inspector (Called in the editor only)</summary>
+        ///--------------------------------------------------------------------
 
         private void OnValidate()
         {
@@ -41,7 +48,7 @@ namespace XiGameTool
             OnValidate_GameCategories();
         }
 
-        // The method will guaranty as minimum one default entry
+        /// <summary>The method will guaranty as minimum one default entry.</summary>
         void Reset()
         {
             Reset_GameTypes();
@@ -49,8 +56,11 @@ namespace XiGameTool
             Reset_GameCategories();
         }
 
-        // Called one before count the objects of scene
-        // Then will be incremented each counter again
+        ///--------------------------------------------------------------------
+        /// <summary>Called one before count the objects of scene Then will be
+        /// incremented each counter again.</summary>
+        ///--------------------------------------------------------------------
+
         public void ClearCounters()
         {
             foreach (var cat in Categories)
@@ -67,6 +77,7 @@ namespace XiGameTool
         }
 
         #region The Initialization
+        /// <summary>Resets to default.</summary>
         [NaughtyAttributes.Button]
         void ResetToDefault()
         {
@@ -82,16 +93,30 @@ namespace XiGameTool
         }
         #endregion
 
-        /** The Game Type **/
-
         #region GameTypes
 
+        /// <summary>List of game types.</summary>
         [ValidateInput("IsUniqueGameTypeName", "Expects have unique names")]
         [SerializeField]
         private List<GameTypeData> _gameTypes = new List<GameTypeData>();
 
+        ///--------------------------------------------------------------------
+        /// <summary>Gets a list of game types.</summary>
+        ///
+        /// <value>A list of types of the games.</value>
+        ///--------------------------------------------------------------------
+
         public IReadOnlyList<GameTypeData> GameTypes => _gameTypes;
-        
+
+        ///--------------------------------------------------------------------
+        /// <summary>Searches for the first game type.</summary>
+        ///
+        /// <param name="name">  The name.</param>
+        /// <param name="result">[out] The result.</param>
+        ///
+        /// <returns>True if it succeeds, false if it fails.</returns>
+        ///--------------------------------------------------------------------
+
         public bool FindGameType(string name, out GameTypeData result)
         {
             foreach (var item in GameTypes)
@@ -107,11 +132,19 @@ namespace XiGameTool
         }
 
 #if UNITY_EDITOR
+
+        ///--------------------------------------------------------------------
+        /// <summary>Query if this object is unique game type name.</summary>
+        ///
+        /// <returns>True if unique game type name, false if not.</returns>
+        ///--------------------------------------------------------------------
+
         private bool IsUniqueGameTypeName()
         {
             return (_gameTypes.Count == _gameTypes.Select(x => x.Name).Distinct().Count());
         }
 
+        /// <summary>Executes the 'validate game types' action.</summary>
         private void OnValidate_GameTypes()
         {
             Reset_GameTypes();
@@ -127,6 +160,7 @@ namespace XiGameTool
                 Debug.LogError($"Duplicate GameType Name in the assed '{name}", this);
         }
 
+        /// <summary>Resets the game types.</summary>
         private void Reset_GameTypes()
         {
             if (_gameTypes.Count == 0)
@@ -138,15 +172,22 @@ namespace XiGameTool
 #endif
         #endregion
 
-        /** The Game Sets **/
-
         #region GameSets
+        /// <summary>Information describing the selection sets.</summary>
         [FormerlySerializedAs("_gameSetsData")]
         [ValidateInput("IsUniqueGameSetName", "Expects to have unique names")]
         [SerializeField]
         private List<GameSetData> _selectionSetsData = new List<GameSetData>();
 
+        /// <summary>Sets the selection belongs to.</summary>
         private List<SelectionSet> _selectionSets = new List<SelectionSet>();
+
+        ///--------------------------------------------------------------------
+        /// <summary>Gets the selection sets.</summary>
+        ///
+        /// <value>The selection sets.</value>
+        ///--------------------------------------------------------------------
+
         public IReadOnlyList<SelectionSet> SelectionSets
         {
             get
@@ -156,6 +197,14 @@ namespace XiGameTool
                 return _selectionSets;
             }
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Searches for the first selection set.</summary>
+        ///
+        /// <param name="name">The name.</param>
+        ///
+        /// <returns>The found selection set.</returns>
+        ///--------------------------------------------------------------------
 
         public SelectionSet FindSelectionSet(string name)
         {
@@ -170,11 +219,19 @@ namespace XiGameTool
 
 
 #if UNITY_EDITOR
+
+        ///--------------------------------------------------------------------
+        /// <summary>Query if this object is unique game set name.</summary>
+        ///
+        /// <returns>True if unique game set name, false if not.</returns>
+        ///--------------------------------------------------------------------
+
         private bool IsUniqueGameSetName()
         {
             return (_selectionSetsData.Count == _selectionSetsData.Select(o => o.Name).Distinct().Count());
         }
 
+        /// <summary>Executes the 'validate game sets' action.</summary>
         private void OnValidate_GameSets()
         {
             _selectionSets = null; /* Force Reinit */
@@ -189,6 +246,7 @@ namespace XiGameTool
             if (!IsUniqueGameSetName())
                 Debug.LogError($"Duplicate GameType Names in the asset '{name}'", this);
         }
+        /// <summary>Resets the game sets.</summary>
         private void Reset_GameSets()
         {
             if (_selectionSetsData.Count == 0)
@@ -205,20 +263,31 @@ namespace XiGameTool
 #endif
         #endregion
 
-        /** The Game Subcategories **/
-
         #region GameCategories
+
+        /// <summary>Message describing the error.</summary>
         [ValidateInput("IsEmptyMessage", "There is error message below")]
         [TextArea(0,5)]
         public string ErrorMessage;
 
+        /// <summary>Information describing the game categories.</summary>
         [ValidateInput("IsUniqueGameCategoryName", "Expects to have unique names")]
         [SerializeField]
         [AllowNesting]
         private List<GameCategoryData> _gameCategoriesData = new List<GameCategoryData>();
 
+        /// <summary>Categories the game belongs to.</summary>
         private List<Category> _gameCategories = null;
+        /// <summary>The game subcategories.</summary>
         private List<Subcategory> _gameSubcategories = null;
+
+        ///--------------------------------------------------------------------
+        /// <summary>Searches for the first category.</summary>
+        ///
+        /// <param name="name">The name.</param>
+        ///
+        /// <returns>The found category.</returns>
+        ///--------------------------------------------------------------------
 
         public Category FindCategory(string name)
         {
@@ -230,6 +299,15 @@ namespace XiGameTool
             }
             return item;
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Searches for the first subcategory.</summary>
+        ///
+        /// <param name="name">The name.</param>
+        ///
+        /// <returns>The found subcategory.</returns>
+        ///--------------------------------------------------------------------
+
         public Subcategory FindSubcategory(string name)
         {
             var item = Subcategories.FirstOrDefault<Subcategory>(o => o.FullName == name);
@@ -240,6 +318,12 @@ namespace XiGameTool
             }
             return item;
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Gets the categories.</summary>
+        ///
+        /// <value>The categories.</value>
+        ///--------------------------------------------------------------------
 
         public IReadOnlyList<Category> Categories
         {
@@ -252,6 +336,12 @@ namespace XiGameTool
                 return _gameCategories;
             }
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Gets the subcategories.</summary>
+        ///
+        /// <value>The subcategories.</value>
+        ///--------------------------------------------------------------------
 
         public IReadOnlyList<Subcategory> Subcategories
         {
@@ -280,16 +370,30 @@ namespace XiGameTool
         }
 
 #if UNITY_EDITOR
+
+        ///--------------------------------------------------------------------
+        /// <summary>Query if this object is empty message.</summary>
+        ///
+        /// <returns>True if empty message, false if not.</returns>
+        ///--------------------------------------------------------------------
+
         private bool IsEmptyMessage()
         {
             return string.IsNullOrEmpty(ErrorMessage);
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Query if this object is unique game category name.</summary>
+        ///
+        /// <returns>True if unique game category name, false if not.</returns>
+        ///--------------------------------------------------------------------
 
         private bool IsUniqueGameCategoryName()
         {
             return (_gameCategoriesData.Count == _gameCategoriesData.Select(o => o.Name).Distinct().Count());
         }
 
+        /// <summary>Executes the 'validate game categories' action.</summary>
         private void OnValidate_GameCategories()
         {
             _gameCategories = null; /* Force Reinit */
@@ -315,6 +419,7 @@ namespace XiGameTool
 
 
         }
+        /// <summary>Resets the game categories.</summary>
         private void Reset_GameCategories()
         {
             if (_gameCategoriesData.Count == 0)
@@ -327,6 +432,7 @@ namespace XiGameTool
 
     }
 
+    /// <summary>A game type data.</summary>
     [System.Serializable]
     public struct GameTypeData
     {
@@ -334,6 +440,7 @@ namespace XiGameTool
         public string Description;
         public Texture Icon;
     }
+    /// <summary>A game set data.</summary>
     [System.Serializable]
     public struct GameSetData
     {
@@ -343,6 +450,7 @@ namespace XiGameTool
         public Texture Icon;
     }
 
+    /// <summary>A game category data.</summary>
     [System.Serializable]
     public struct GameCategoryData
     {
@@ -352,10 +460,26 @@ namespace XiGameTool
         public List<string> Subcategories;
 
 #if UNITY_EDITOR
+
+        ///--------------------------------------------------------------------
+        /// <summary>Query if this object is unique subcategories name.</summary>
+        ///
+        /// <returns>True if unique subcategories name, false if not.</returns>
+        ///--------------------------------------------------------------------
+
         public bool IsUniqueSubcategoriesName()
         {
             return (Subcategories.Count == Subcategories.Select(o => o).Distinct().Count());
         }
+
+        ///--------------------------------------------------------------------
+        /// <summary>Verify valid names.</summary>
+        ///
+        /// <param name="types">  The types.</param>
+        /// <param name="message">[out] The message.</param>
+        ///
+        /// <returns>True if it succeeds, false if it fails.</returns>
+        ///--------------------------------------------------------------------
 
         public bool VerifyValidNames(List<GameTypeData> types, out string message)
         {

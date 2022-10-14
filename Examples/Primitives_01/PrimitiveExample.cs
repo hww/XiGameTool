@@ -4,9 +4,10 @@ using XiGameTool.Core;
 
 namespace XiArtManager.Examples
 {
+    /// <summary>A primitive example.</summary>
     public class PrimitiveExample : GamePrimitive
     {
-
+        /// <summary>Draws gizmos that are also pickable and always drawn.</summary>
         void OnDrawGizmos()
         {
             if (SelectionSet.IsVisible && Subcategory.IsVisible)
