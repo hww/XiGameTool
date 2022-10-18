@@ -136,7 +136,10 @@ namespace XiGameTool.Core.Editor
 			GUILayout.Box("", _buttonStyle, _iconWidthOption, _iconHeightOption);
 			// -- 1 ---------------------------------------------------
 			if (GUILayout.Button(type.IsVisible ? _visibleIcon : _invisibleIcon, _buttonStyle, _iconWidthOption, _iconHeightOption))
+			{
 				type.IsVisible = !type.IsVisible;
+				SceneView.RepaintAll();
+			}
 			// -- 2 ---------------------------------------------------
 			GUILayout.Box(type.Icon, _buttonStyle, _iconWidthOption, _iconHeightOption);
 			// -- 3 ---------------------------------------------------
