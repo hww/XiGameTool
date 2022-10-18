@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/hww/XiGameTool/compare/v1.2.6...v1.2.7) (2022-10-18)
+
+
+### Bug Fixes
+
+* **code:** Redraw screen on subcategory visibility change ([f65c2c5](https://github.com/hww/XiGameTool/commit/f65c2c545a95fb3e95168391902421271494a441))
+
 ## [1.2.6](https://github.com/hww/XiGameTool/compare/v1.2.5...v1.2.6) (2022-10-14)
 
 
