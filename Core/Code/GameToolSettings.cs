@@ -208,6 +208,8 @@ namespace XiGameTool
 
         public SelectionSet FindSelectionSet(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return SelectionSets[0];
             var item = SelectionSets.FirstOrDefault<SelectionSet>(o => o.Name == name);
             if (item == null)
             {
@@ -310,6 +312,8 @@ namespace XiGameTool
 
         public Subcategory FindSubcategory(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return Subcategories[0];
             var item = Subcategories.FirstOrDefault<Subcategory>(o => o.FullName == name);
             if (item == null)
             {

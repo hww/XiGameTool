@@ -183,6 +183,14 @@ namespace XiGameTool.Core
             }
         }
 
+        ///--------------------------------------------------------------------
+        /// <summary>Gets the hierarhy icon string.</summary>
+        ///
+        /// <value>The hierarhy icon string.</value>
+        ///--------------------------------------------------------------------
+
+        public virtual string HierarhyIconString => "\uE225 ";
+
 #endif
     }
 }
