@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: bad758d9297d5d84b9e3ef5a55c4a281
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - RobotoMono Nerd Font
+  fallbackFontReferences: []
+  customCharacters: "\uE225"
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
