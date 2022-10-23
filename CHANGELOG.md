@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/hww/XiGameTool/compare/v1.2.8...v1.2.9) (2022-10-23)
+
+
+### Bug Fixes
+
+* **code:** Refactoring ([482baf7](https://github.com/hww/XiGameTool/commit/482baf743357774582975e8821a2301978c45747))
+
 ## [1.2.8](https://github.com/hww/XiGameTool/compare/v1.2.7...v1.2.8) (2022-10-22)
 
 
