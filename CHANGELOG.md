@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/hww/XiGameTool/compare/v1.2.7...v1.2.8) (2022-10-22)
+
+
+### Bug Fixes
+
+* **code:** Added hierarchy icon ([c7cbc4a](https://github.com/hww/XiGameTool/commit/c7cbc4a2c86e103961b292c484307d6b844db46a))
+
 ## [1.2.7](https://github.com/hww/XiGameTool/compare/v1.2.6...v1.2.7) (2022-10-18)
 
 
